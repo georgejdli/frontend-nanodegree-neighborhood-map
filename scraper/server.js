@@ -25,38 +25,72 @@ app.get('/scrape', function(req, res){
             var $ = cheerio.load(html);
 
             var json = {};
+            var counter = 0;
 
             //function method filters , and then excecutes the function for each item in the filtered group
             //so right now it's iteratiing over each STATION
             //exclude Milbrase Station for now by excluding the last station entry
-            $('.entrytext > ul').slice(1, -1).filter(function(){
+            $('.entrytext > ul').slice(1, -1).filter(function(i){
                 var data = $(this);
                 //get name of station only, not the text in nested tags that text() would normally return
                 var station = data.children().first().contents().filter(function() {
                     return this.nodeType === 3;
                 }).text().trim();
-                
+                console.log("Station loaded " + i);
                 //initial each station array to hold each bar object
                 json[station] = [];
 
                 //use another filter to iterate over the child elements to get the bar name and the link to the info page
                 data.children().first().children().first().children().filter(function(i){
                     //$(this) is the li that has <a> tags
-                    var barRegex = /.*?(?=\(|$)/;
-                    var name = $(this).find('a').text();
+                    var barRegex,
+                        name,
+                        url,
+                        directions,
+                        waitingForDirections = 1;
+                    
+                    barRegex = /.*?(?=\(|$)/;
+                    name = $(this).find('a').text();
+                    //strip the end of the name string of whitespace and (
                     name = name.match(barRegex)[0].trim();
-                    //$(this).find('a').attr('title') || 
-                    var url = $(this).find('a').attr('href');
+                    console.log(name);
+                    
+                    function directionsCallback() {
+                            json[station][i] = {'name': name, 
+                                                'url': url,
+                                                'directions': directions
+                                                };
+                    }
+
                     if(name) {
-                        json[station][i] = {'name': name, 'url': url};
+                        counter = counter + 1;
+                        url = $(this).find('a').attr('href');
+                        //call back function is executing AFTER json has been written
+                        request(url, function(error, response, html){
+                            if(!error) {
+                                var $ = cheerio.load(html);
+
+                                directions = $('.entrytext > blockquote').text();
+                            }
+                            //console.log("Request description");
+                            directionsCallback();
+                            if(--counter === 0) {
+                                writeToJSON();
+                            }
+                            console.log(counter);
+                        });
+
                     }
                 });
             });
+            
+            function writeToJSON () {
+                fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
 
-            fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
+                    console.log('File successfully written! - Check your project directory for the output.json file');
+                });
+            }
 
-                console.log('File successfully written! - Check your project directory for the output.json file');
-            });
         }
     });
 

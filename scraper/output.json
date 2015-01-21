@@ -2,335 +2,407 @@
     "Ashby Station, Berkeley": [
         {
             "name": "The Rare Barrel Sour Beer Co.",
-            "url": "http://beerbybart.com/why/rare-barrel-sour-beer-co-ashby-bart-and-bus/"
+            "url": "http://beerbybart.com/why/rare-barrel-sour-beer-co-ashby-bart-and-bus/",
+            "directions": "     This trip is well beyond beyond the one mile we typically recommend for these walks, so unless you prefer 1.7 miles of exercise each way, take the AC Transit #49 bus for part of the route or call a cab. (It’s not a bad walk during the daytime, though you will skirt some run down residential areas.  If you are not grabbing the bus, walking from North Berkeley BART is also more than a mile but may be a better option.)\nExit BART through the West Adeline St. exit. If straight ahead is 12 o’clock on a clock face, head to about 2 o’clock  and cut diagonally across the parking lot. (On weekends there will be a flea market to cut through). Exit the lot and you will be at the corner of Ashby and Martin Luther King Jr. Way. Cross Ashby. This is where you can pick up the 49 bus ($2.10 exact fare or Clipper Card).\nIf you decide to walk it, turn left and walk down Ashby about 10 blocks to San Pablo Ave. Cross San Pablo Ave. and turn right. Walk five blocks to Parker St. Turn left. Walk 2 1/2 blocks and Rare Barrel will be on your left, set far back from the street past the Nolo Press building.\nNote: This is a big, high-ceiling old warehouse with concrete floors.  It may be cold inside during the winter months.\n"
         }
     ],
     "Berkeley Station, Berkeley": [
         {
             "name": "Triple Rock",
-            "url": "http://beerbybart.com/why/triple-rock-berkeley-station/"
+            "url": "http://beerbybart.com/why/triple-rock-berkeley-station/",
+            "directions": ""
         },
         {
             "name": "Perdition Smokehouse",
-            "url": "http://beerbybart.com/why/perdition-smokehouse-berkeley/"
+            "url": "http://beerbybart.com/why/perdition-smokehouse-berkeley/",
+            "directions": "Exit the downtown Berkeley BART station via the main exit, and walk north on Shattuck (towards distant hills) to University, then turn left. Walk past Bobby G’s Pizzeria and find Perdition Smokehouse several doors down."
         },
         {
             "name": "Bobby G’s",
-            "url": "http://beerbybart.com/why/bobby-g-berkeley-station/"
+            "url": "http://beerbybart.com/why/bobby-g-berkeley-station/",
+            "directions": "Exit the downtown Berkeley BART station via the main exit, and walk north on Shattuck (towards distant hills) to University, then turn left."
         },
         {
             "name": "Jupiter",
-            "url": "http://baybeertrain.wordpress.com/why/jupiter-berkeley-station/"
+            "url": "http://baybeertrain.wordpress.com/why/jupiter-berkeley-station/",
+            "directions": "Exit the downtown Berkeley BART station via the main exit and cross Shattuck or walk to the far south end of the BART station and exit almost directly in front of Jupiter."
         }
     ],
     "North Berkeley Station, Berkeley": [
         {
             "name": "Sierra Nevada Torpedo Room",
-            "url": "http://beerbybart.com/why/sierra-nevada-torpedo-room-north-berkeley-bart-plus-bus/"
+            "url": "http://beerbybart.com/why/sierra-nevada-torpedo-room-north-berkeley-bart-plus-bus/",
+            "directions": "     This trip is a bit beyond beyond the one mile we typically recommend for these walks, so unless you prefer 1.3 miles of exercise each way, take the AC Transit #51B-Amtrak bus*  ($2.10 exact fare or Clipper Card) for part of the route or call a cab. Exit BART and go right to Sacramento St. Take Sacramento St. 4 blocks to University Ave. This is where you can pick up the bus. If you decide to walk it, turn right and walk down University about 11 blocks to 4th St. Cross University, walk under the freeway and continue on 4th St. for a block and the Torpedo Room will be on your left.\nAlso, if you ride Amtrak to Berkeley, you are very close. Exit your train and walk a block up University to 4th St. Turn right under the freeway and walk a block to the Torpedo Room on the left.\n* If you take the 51B (Marina), get off at 6th St. and walk the rest of the way.\nOfficial North Berkeley Station and connecting transit info."
         },
         {
             "name": "Lanesplitter",
-            "url": "http://beerbybart.com/why/lanesplitter-north-berkeley/"
+            "url": "http://beerbybart.com/why/lanesplitter-north-berkeley/",
+            "directions": "Walking from BART: Exit and turn right, heading away from the hills, cutting across towards the southwest corner of the parking lot at Acton and Delaware Streets. Take Acton south for three short blocks. Turn right at University Avenue, and continue three long blocks west. (Or you could take a bus for these three blocks on University if you wanted to wait at the bus stop).  Turn left onto San Pablo Avenue for about half a block."
         },
         {
             "name": "The Albatross Pub",
-            "url": "http://beerbybart.com/why/albatross-north-berkeley/"
+            "url": "http://beerbybart.com/why/albatross-north-berkeley/",
+            "directions": "Walking from BART: Exit and turn right around the station, heading away from the hills, across towards the southwest side of the parking lot at Acton and Delaware Streets. Take Delaware west. Turn left at San Pablo Avenue for about half a block."
         }
     ],
     "El Cerrito Plaza Station, El Cerrito": [
         {
             "name": "Elevation 66 Brewing Company",
-            "url": "http://baybeertrain.wordpress.com/why/elevation-66-brewing-el-cerrito-plaza//"
+            "url": "http://baybeertrain.wordpress.com/why/elevation-66-brewing-el-cerrito-plaza//",
+            "directions": "Walk out of the BART station, and head right to Central Av. Turn left and walk 4 blocks to San Pablo Ave. Turn left and find the brewpub 2 doors down on the left."
         },
         {
             "name": "Albany Tap Room",
-            "url": "http://beerbybart.com/why/albany-taproom-el-cerrito-plaza/"
+            "url": "http://beerbybart.com/why/albany-taproom-el-cerrito-plaza/",
+            "directions": "Walk out of the BART station, and head left to Fairmount Ave. Turn right and walk 4 blocks to San Pablo Ave. Turn left on San Pablo and walk 6 blocks and find Albany Taproom."
         }
     ],
     "Dublin/Pleasanton Station": [
         {
             "name": "Caps & Taps",
-            "url": "http://beerbybart.com/why/caps-taps-dublinpleasanton/"
+            "url": "http://beerbybart.com/why/caps-taps-dublinpleasanton/",
+            "directions": "   Exit the BART station and follow the sidewalk to the left. You will come to a small gate which is the Iron Horse Regional Trail. Walk on the multi-use trail until you reach Dublin Blvd. Go left to the corner of Scarlett Drive. Cross Dublin Blvd. and then cross Scarlett. Continue on Dublin Blvd. Walk past the gas station on the corner and into the parking lot of the commercial strip on the right. Walk to the first driveway on the right. Turn right and Caps & Taps will be on the left. (NOTE: the Iron Horse Trail officially closes at 10pm.  Taking Dublin Blvd. all the way back to DeMarcus and then turning right will work).\nExtras: The Iron Horse Trail connects all the way to Concord which can make for a nice pub-by-bike day. The trail is flat, paved and separated from traffic save for cross streets. It is multi-use so bring your bike bell (it’s actually the law in Regional Parks) to alert pedestrians as you pass. There are BART stations close to the trail at various points. \n\nOfficial Dublin Pleasanton Station and connecting transit info.\nView Larger Map"
         }
     ],
     "Hayward Station, Hayward": [
         {
             "name": "The Bistro",
-            "url": "http://baybeertrain.wordpress.com/why/the-bistro-hayward/"
+            "url": "http://baybeertrain.wordpress.com/why/the-bistro-hayward/",
+            "directions": "Walking from BART: Exit the station towards B Street, and turn right towards the hills. Continue for about three and a half blocks to the corner of B and Main. The Bistro is on your right."
         },
         {
             "name": "Buffalo Bill’s",
-            "url": "http://baybeertrain.wordpress.com/why/buffalo-bills-brewery-hayward/"
+            "url": "http://baybeertrain.wordpress.com/why/buffalo-bills-brewery-hayward/",
+            "directions": " Walking from BART: Go out of the BART station left to B St. Walk right (East) on B Street five blocks to 1082 B St. at Foothill."
         }
     ],
     "Bay Fair Station, San Leandro": [
         {
             "name": "Harry’s Hofbrau",
-            "url": "http://beerbybart.com/why/harrys-hofbrau-bay-fair/"
+            "url": "http://beerbybart.com/why/harrys-hofbrau-bay-fair/",
+            "directions": "   Exit the BART station and follow the sidewalk to the left toward Target. Cross the street to the pedestrian bridge and walk toward the Target store. Cross the not visibly signed street (Bay Fair Blvd.) and turn left. Follow the sidewalk until you reach two beauty stores and a crosswalk.  You will see a traffic light and a main street to your left. Turn left at the crosswalk near Sally Beauty Store, walk past the Beauty Salon and Spa store to the traffic light. Cross the not visibly signed Hesperian Boulevard and turn right. Walk to the 2nd traffic light. Cross E. 14th St. and you’ll see Harry’s Hofbrau straight ahead.\nExtras: This would be a great venue to hold a large event. There are several distinct spaces that can hold parties of varying sizes."
         }
     ],
     "San Leandro Station, San Leandro": [
         {
             "name": "Drakes",
-            "url": "http://beerbybart.com/why/drakes-brewery-and-barrel-house-san-leandro/"
+            "url": "http://beerbybart.com/why/drakes-brewery-and-barrel-house-san-leandro/",
+            "directions": " Drake’s is located in the Westgate Shopping Center. It’s over a mile walk down Davis Street, and not a particularly aesthetic or safe one with a precarious onramp crossing at Highway 880. You you may want to hop a bus, shuttle or cab at BART. A free Shuttle runs every 20 min during peak commute hours between the BART station and the Westgate Shopping Center. Recently the posted times were 5:45am- 9:45am and 3pm-7pm. Check the free Links shopping shuttle site.e To find a white Links shuttle bus, exit the station thru the east door (San Leandro Avenue side) and turn right, looking for the bus stop sign.  Get off at the first stop after you cross the freeway, across from Westgate shopping center.  Cross the street into the center and follow the line of chain stores until you face Walmart. Turn right and you’ll find Drake’s tucked away in back of the stores. The AC Transit bus #89 also runs approximately every 30 minutes from the BART station. Get off at Timothy Drive (Home Depot), walk back seeking the tell-tale brewery grain silo."
         },
         {
             "name": "The Englander",
-            "url": "http://baybeertrain.wordpress.com/why/the-englander-san-leandro/"
+            "url": "http://baybeertrain.wordpress.com/why/the-englander-san-leandro/",
+            "directions": "Walk out of the BART station, cross the street at the crosswalk you see to your right. Continue south along San Leandro Blvd. another block, then turn left on Parrott. Walk four blocks and look for a small parking lot on your right, where you’ll find The Englander."
         }
     ],
     "Fruitvale Station": [
         {
             "name": "Ale Industries",
-            "url": "http://beerbybart.com/why/ale-industries-fruitvale/"
+            "url": "http://beerbybart.com/why/ale-industries-fruitvale/",
+            "directions": "From Fruitvale BART, by daylight, it’s quickest to exit out the back to the bus waiting area, cross the bus lane to 34th Avenue. Walk one block to San Leandro Street. Turn Right on San Leandro, continue across Fruitvale Avenue. Cross Fruitvale onto East 10th, and walk about half a block to the brewery. (After dark, pay attention and walk with your urban-street-smarts turned on in this area. Consider the better-lighted route along the walkway beside and below the the BART tracks, running between the station and the corner of 12th Street and Fruitvale. Google maps is preventing us from showing that as a foot route, but you will see that it is.)"
         }
     ],
     "Concord Station, Concord": [
         {
             "name": "The Hop Grenade",
-            "url": "http://beerbybart.com/why/the-hop-grenade-concord/"
+            "url": "http://beerbybart.com/why/the-hop-grenade-concord/",
+            "directions": ""
         },
         {
             "name": "The Pig & The Pickle",
-            "url": "http://beerbybart.com/why/the-pig-and-the-pickle-concord/"
+            "url": "http://beerbybart.com/why/the-pig-and-the-pickle-concord/",
+            "directions": ""
         },
         {
             "name": "E. J. Phair",
-            "url": "http://baybeertrain.wordpress.com/why/e-j-phair-concord-station/"
+            "url": "http://baybeertrain.wordpress.com/why/e-j-phair-concord-station/",
+            "directions": "Walking from BART: Exit the west side of the station and walk across the parking lot. Find the signs to Todos Santos Square which will direct you to Grant Street. Turn right onto Grant and walk four blocks to the grassy park on your left (Todos Santos Square). The pub is straight ahead, on the north corner of the square."
         }
     ],
     "Walnut Creek Station, Walnut Creek": [
         {
             "name": "Øl Beercafe",
-            "url": "http://beerbybart.com/why/ol-beercafe-walnut-creek/"
+            "url": "http://beerbybart.com/why/ol-beercafe-walnut-creek/",
+            "directions": "Exit the BART fare gates and turn left. Walk down a long row of bus stops, then down the stairs to corner of Ygnatio Valley Road and North California Road. Cross Ygnacio Valley and walk down a slight hill on North California. Turn left at the first light onto Lacassie Ave. Walk one block, and turn right onto to Locust Street until your first left, onto Giammona Drive. ØL Beercafe is on this short block. Note: If you look at the local map in the BART station, Giammona Drive still appears as East Street, its former name."
         },
         {
             "name": "Sunol Ridge",
-            "url": "http://beerbybart.com/why/sunol-ridge-walnut-creek/"
+            "url": "http://beerbybart.com/why/sunol-ridge-walnut-creek/",
+            "directions": "Exit the BART fare gates and turn left. Walk down a long row of bus stops, then down the stairs to corner of Ygnatio Valley Road and North California Road. Cross Ygnacio Valley and walk down a slight hill on North California. Turn left at the first light onto Lacassie Ave. Walk one block, and turn right onto to Locust Street. Walk down Locust across Bonanza to Cypress and find Sunol Ridge on the left.\nThere is a Free Ride Shuttle that runs from the BART station down Locust St. that will drop you off across the street from Sunol Ridge. It runs about every 15-20 minutes until about 9:15 during the week and 6:20 on weekends.\nExtras: Øl Beercafe is a few blocks away."
         },
         {
             "name": "Pyramid",
-            "url": "http://beerbybart.com/why/pyramid-walnut-creek-station/"
+            "url": "http://beerbybart.com/why/pyramid-walnut-creek-station/",
+            "directions": "From BART, turn right onto Ygnacio Valley road. Then turn Left onto California Blvd for a block.  Take a right on Lacassie for a block, and a right onto Locust. Continue until you see the brewpub on your left, at the corner of Cypress."
         }
     ],
     "MacArthur Station, Oakland": [
         {
             "name": "Hog’s Apothecary",
-            "url": "http://beerbybart.com/why/hogs-apothecary-macarthur/"
+            "url": "http://beerbybart.com/why/hogs-apothecary-macarthur/",
+            "directions": "  \nWalk out of BART and go left to 40th Street.  Turn right on 40th and continue past the BART parking lot. In about five blocks you will reach the corner of Opal. You’ll see Hog’s Apothecary on your right."
         },
         {
             "name": "Cato’s",
-            "url": "http://beerbybart.com/why/catos-ale-house-macarthur/"
+            "url": "http://beerbybart.com/why/catos-ale-house-macarthur/",
+            "directions": "Walking from BART: Go east out of BART on 40th Street.  Continue across Telegraph, cross Broadway, then go over a small hill to Howe Street, jog left, then right again on 40th Street one more block to Piedmont Avenue.  Turn right to go to 3891 Piedmont.\nWould you walk a mile for a beer? Cato’s  is more than 10 blocks east of MacArthur BART – a BART station which has seen late night crime – way over on upscale Piedmont Avenue. While many people walk in this part of town, this route is clearly not the most scenic walk in Oakland, and it may be rather desolate after dark.  You might want to walk it by daylight, and then take a cab or a bus back to BART later. If you are set on walking, consider walking a little farther by going north and returning via BART from Rockridge station on College Avenue."
         },
         {
             "name": "Lanesplitter",
-            "url": "http://beerbybart.com/why/lanesplitter-macarthur/"
+            "url": "http://beerbybart.com/why/lanesplitter-macarthur/",
+            "directions": "Walk out of the BART on 40th st. to Telegraph, left on Telegraph for about half a mile to the corner of 48th. You could also take any bus headed up Telegraph, however you are likely to see cabs before you see a bus.  Note that MacArthur BART – a BART station which has seen late night crime – can be intimidating after dark. This route is clearly not the most scenic walk in Oakland, and it can be rather desolate. You might choose to walk it by daylight, and then take a cab or a bus back to BART later."
         }
     ],
     "19th Street Station, Oakland": [
         {
             "name": "The Good Hop",
-            "url": "http://beerbybart.com/why/the-good-hop-19th-st-oakland/"
+            "url": "http://beerbybart.com/why/the-good-hop-19th-st-oakland/",
+            "directions": "Get off at 19th Street Oakland. Exit BART thru the 20th Street exit. Walk to 20th and turn left for 1 block to Telegraph. Cross Telegraph and turn right. Walk 5 blocks to the corner of 24th and Telegraph.\nOfficial 19th St. Station and connecting transit info from BART."
         },
         {
             "name": "Woods Bar & Brewery",
-            "url": "http://beerbybart.com/why/woods-bar-brewery-19th-st-oakland/"
+            "url": "http://beerbybart.com/why/woods-bar-brewery-19th-st-oakland/",
+            "directions": "Exit BART up through the exit labeled Telegraph  and proceed straight through the alley from Broadway onto Telegraph Avenue. Turn left on Telegraph and go the the corner of 17th. Cross Telegraph and go directly into Woods Bar & Brewery. (You could also go down Broadway and turn right on 17th Street for one short block to avoid the pedestrian-only alley)."
         },
         {
             "name": "Luka’s Taproom",
-            "url": "http://baybeertrain.wordpress.com/why/lukas-taproom-19th-street-oakland/"
+            "url": "http://baybeertrain.wordpress.com/why/lukas-taproom-19th-street-oakland/",
+            "directions": "From 19th Street BART, walk north up Broadway, passing the old Paramount Theatre, for a total about four short blocks. You’ll find Luka’s on the left at the southwest corner of Grand Ave."
         }
     ],
     "12th Street Station, Oakland": [
         {
             "name": "The Trappist",
-            "url": "http://beerbybart.com/why/the-trappist-12th-st-oakland/"
+            "url": "http://beerbybart.com/why/the-trappist-12th-st-oakland/",
+            "directions": "Exit BART thru Exit A1. Walk down Broadway to 8th Street, turn right (west) just a few doors and you’ll find The Trappist on your right."
         },
         {
             "name": "Faction Brewing",
-            "url": "http://beerbybart.com/why/faction-brewing-company-12th-st-oakland-and-bus/"
+            "url": "http://beerbybart.com/why/faction-brewing-company-12th-st-oakland-and-bus/",
+            "directions": " Directions from 12th St. Oakland BART: Exit the BART thru Exit A1. Walk down Broadway to 9th St. Board the #31 AC Transit bus ($2.10 exact change or Clipper Card). Take the bus through the tunnel into Alameda. Get off at W. Midway Ave and Pan Am Way. Continue walking down W. Midway Ave. to Monarch St. Turn right and cross the street. You’ll see two huge barracks-like buildings. One is Faction and one is St. George Spirits. Turn into the parking lot between them. You’ll see a grain silo on the left. Walk to the end of the building.  The tasting room will be around the corner of the building, facing the bay."
         },
         {
             "name": "Beer Revolution",
-            "url": "http://beerbybart.com/why/beer-revolution-12th-st-oakland/"
+            "url": "http://beerbybart.com/why/beer-revolution-12th-st-oakland/",
+            "directions": ""
         },
         {
             "name": "Rosamunde Sausage Grill",
-            "url": "http://beerbybart.com/why/rosamunde-sausage-grill-12th-st-oakland/"
+            "url": "http://beerbybart.com/why/rosamunde-sausage-grill-12th-st-oakland/",
+            "directions": "Exit BART thru Exit A1. Walk down Broadway past the Marriott Hotel/Convention Center, turn right on 10th Street. (Take a diagonal shortcut through the parking lot towards the Free WiFi sign if you prefer.)  From 10th, turn left onto Washington and you’ll see Rosamunde Sausage Grill ahead on the right in Swan Market."
         },
         {
             "name": "Pacific Coast Brewing Co.",
-            "url": "http://baybeertrain.wordpress.com/why/pacific-coast-brewing-company-oakland/"
+            "url": "http://baybeertrain.wordpress.com/why/pacific-coast-brewing-company-oakland/",
+            "directions": "Exit BART thru Exit A1. Walk down Broadway past the Marriott Hotel/Convention Center, turn right on 10th Street. (Take a diagonal shortcut through the parking lot towards the Free WiFi sign if you prefer.)  From 10th, turn left onto Washington and you’ll see Pacific Coast Brewing Company ahead on the left."
         }
     ],
     "West Oakland Station": [
         {
             "name": "The Beer Shed At Linden Street",
-            "url": "http://beerbybart.com/why/the-beer-shed-at-linden-st-brewery-west-oakland-bart/"
+            "url": "http://beerbybart.com/why/the-beer-shed-at-linden-st-brewery-west-oakland-bart/",
+            "directions": "The map shows the route from the exit on 7th Street. We suggest walking this by daylight only. You may shave off a little distance by cutting though the parking lot on the 5th Street side of the station instead.  Continue down Mandela Parkway, which curves and changes to 3rd Street. Enjoy the railroad yard scenery, and continue until you get to Linden Street. Turn right and then right again into the parking lot at 95 Linden."
         }
     ],
     "Embarcadero Station, S.F": [
         {
             "name": "Marin Brewing Company",
-            "url": "http://beerbybart.com/why/marin-brewing-company-embarcadero-and-ferry/"
+            "url": "http://beerbybart.com/why/marin-brewing-company-embarcadero-and-ferry/",
+            "directions": " Directions from BART: Exit the BART Station and head east to the end of Market St. Cross the Embarcadero to the Ferry Building. You can either walk through the building to the Bay and turn right to the Golden Gate Ferry Terminal, or turn right before entering the building and walk around the end towards the Bay. Pass the Gandhi statue, then go left to the ticket office.\nWhen you get off the ferry in Larkspur, exit the terminal and walk north across the parking lot towards the busy Sir Francis Drake Boulevard. Cross SFD Blvd. via the pedestrian bridge into Larkspur Landing Shopping Center. There you will find the Marin Brewing Company."
         },
         {
             "name": "Magnolia Smokestack",
-            "url": "http://beerbybart.com/why/magnolia-brewery-and-smokestack-bbq-embarcadero-and-muni/"
+            "url": "http://beerbybart.com/why/magnolia-brewery-and-smokestack-bbq-embarcadero-and-muni/",
+            "directions": "  The simplest way to get from BART to Magnolia’s Smokestack is to exit the Embarcadero BART gates underground and enter the MUNI Metro system in the station ($2.00 exact change or Clipper Card). Take the K,  N or T Sunnydale train toward Visitacion Valley to the 20th Street stop on 3rd Street. Continue on foot another long block to 22nd and cross the street to find Smokestack at 2505 Third. (Note that 3rd Street curves to reach along the waterfront, intersecting streets such as 20th and 22nd, but that 21st does not come through. SF does grids casually.)\n(The same instructions as above apply to any of the four downtown BART stations where you may transfer underground to the MUNI streetcar lines. Major MUNI bus lines #22 and #48 also cross 3rd Street near the restaurant.)"
         },
         {
             "name": "Speakeasy Ales and Lagers",
-            "url": "http://beerbybart.com/why/speakeasy-brewery-muni/"
+            "url": "http://beerbybart.com/why/speakeasy-brewery-muni/",
+            "directions": " Exit BART and enter MUNI Metro in the same station. Take the K/T Metro inbound. Get off at the Evans Street stop at 3rd Street. Cross 3rd Street and walk East on Evans 0.4 miles to Speakeasy on the right at Keith. You should not walk this stretch after dark, so you may choose to take the 44 or 19 bus down Evans Avenue coming out. Get off at Keith Street. Plan to seek a cab or ride if you are returning late.  It can sometimes be hard to get cabs to come out to this neighborhood, though cab companies should be familiar with the location due to the parties."
         },
         {
             "name": "Triple Voodoo Brewery",
-            "url": "http://beerbybart.com/why/triple-voodoo-brewing-embarcadero-and-muni/"
+            "url": "http://beerbybart.com/why/triple-voodoo-brewing-embarcadero-and-muni/",
+            "directions": ""
         }
     ],
     "Montgomery Station, S.F": [
         {
             "name": "La Trappe",
-            "url": "http://beerbybart.com/why/la-trappe-montgomery-bart/"
+            "url": "http://beerbybart.com/why/la-trappe-montgomery-bart/",
+            "directions": "This is just slightly beyond our one-mile-walking-from-BART limit, but we think you may enjoy this walk. Exit BART through the exit labeled A1 onto the north side of Market St. Turn right out of the exit and then left on Montgomery Street. Walk about 7 blocks to the TransAmerica Pyramid building, then soft left up Columbus for about 9 blocks to the corner of Greenwich and Columbus. Note that the Cable Car tracks turn onto Columbus Avenue by La Trappe at the intersection with Greenwich.\nYou can also take a cable car from Embarcadero Station, changing cable cars up at Powell and California, and continuing on the Hyde Street line, or instead depart BART from Powell Station and go directly over on the Hyde cable car line.\n"
         },
         {
             "name": "Public House",
-            "url": "http://beerbybart.com/why/public-house-montgomery/"
+            "url": "http://beerbybart.com/why/public-house-montgomery/",
+            "directions": " Walking from BART: Exit BART through the exit labeled B1. Turn down 2nd and walk 8 long blocks to the Giants ballpark. Cross King St. and walk right, along the ballpark to the corner of King and 3rd St. Directly behind the statue of Willie Mays is the entrance to the Public House.\nInstead of walking from BART, you could grab the MUNI streetcar to the ballpark (Mission Bay) or back."
         },
         {
             "name": "21st Amendment",
-            "url": "http://beerbybart.com/why/21st-amendment-montgomery/"
+            "url": "http://beerbybart.com/why/21st-amendment-montgomery/",
+            "directions": " Walking from BART: Exit  BART through the exit labeled B2 onto the south side of Market Street and go to 2nd Street. Turn left on 2nd and walk 5 1/2 long blocks to 21st Amendment on the left. (Note: you can also walk from Embarcadero BART along the waterfront to the ballpark, and then go right on 2nd. It’s longer, but a great walk with sweeping waterfront views.)"
         }
     ],
     "Powell Station, S.F.": [
         {
             "name": "Mikkeller Bar",
-            "url": "http://beerbybart.com/why/mikkeller-bar-powell/"
+            "url": "http://beerbybart.com/why/mikkeller-bar-powell/",
+            "directions": "  Exit the BART station through the exit labeled A1, into the below-grade plaza. Go left to the SF Visitors Information Center. Climb the stairs and walk left to the crosswalk. Cross the street and walk one block to Mason St.  Cross Eddy St. to the left and walk 1/2 block to 34 Mason St."
         },
         {
             "name": "Hopwater Distribution",
-            "url": "http://beerbybart.com/why/hopwater-distribution-powell/"
+            "url": "http://beerbybart.com/why/hopwater-distribution-powell/",
+            "directions": "  Exit the BART station through the exit labeled A1, into the below-grade plaza. Go left towards the SF Visitors Information Center. Climb the stairs and walk left to the sidewalk. Turn right. Walk up Cyril Magnin Street two blocks. Turn left one block on O’Farrell. Turn right and continue four blocks uphill to Bush Street. Cross Bush and turn left for 1/2 block."
         },
         {
             "name": "The Press Club",
-            "url": "http://beerbybart.com/why/press-club-powell/"
+            "url": "http://beerbybart.com/why/press-club-powell/",
+            "directions": "  Exit the BART station on the south side of Market Street. Walk northeast (toward the distant pointy Ferry Building tower) past 4th Street. Just beyond The Coffee Bean and Tea Leaf Cafe, turn right down the alley.  The Press Club will be on your left. (It’s an even shorter walk from the BART entrance near 4th Street)"
         },
         {
             "name": "Amsterdam Cafe",
-            "url": "http://beerbybart.com/why/amsterdam-cafe-powell/"
+            "url": "http://beerbybart.com/why/amsterdam-cafe-powell/",
+            "directions": "   Take the Exit labeled A1 from the BART station into  the plaza. Climb stairs to the right and walk to the Cable Car turnaround at Powell Street. Follow up Powell Street two blocks to Geary Street. Either turn left to walk along Geary, or cross Geary to wait at the curb for the 38 Geary bus. Get off at Larkin Street, and continue half a block along Geary to the cafe."
         },
         {
             "name": "Bartlett Hall",
-            "url": "http://beerbybart.com/why/bartlett-hall-powell/"
+            "url": "http://beerbybart.com/why/bartlett-hall-powell/",
+            "directions": "   Take the Exit labeled A1 from the BART station into the plaza. Climb stairs or escalator to the right to the Cable Car turnaround at Powell Street. Turn left and walk up Powell Street two blocks to O’Farrell Street. Cross O’Farrell, turn left and find Bartlett Hall 1/2 a block on the right."
         },
         {
             "name": "Steep Brew SOMA",
-            "url": "http://beerbybart.com/why/steep-brew-soma-powell/"
+            "url": "http://beerbybart.com/why/steep-brew-soma-powell/",
+            "directions": "Exit the BART station on the south side of Market Street. Walk northeast (toward the distant pointy Ferry Building tower) to 4th Street. Cross 4th and turn right.  Continue down 4th Street about 0.6 of a mile until you see Whole Foods Market.  Steep Brew is on the Harrison Street corner of the building.  You can enter the taproom from the street or go through the store to shop before having a beer."
         }
     ],
     "Civic Center Station, S.F": [
         {
             "name": "Toronado",
-            "url": "http://beerbybart.com/why/toronado-civic-center/"
+            "url": "http://beerbybart.com/why/toronado-civic-center/",
+            "directions": " It’s over a mile from BART and uphill, so you may want to hop a bus to get to the corner of Haight and Filmore. From Civic Center BART, exit on the north side of Market Street. Take MUNI bus #6, or #71 which go up Haight Street. (Remember to ask for a transfer for your return trip). Get off at Fillmore Street. Walk across Haight Street. Toronado is on the south side of Haight 1/2 block west.\nFrom south of the City, if you prefer, get off at 16th St BART, exit on the east side of Mission Street. Take the 22 Fillmore bus from the northeast corner of 16th and Mission (remember to ask for a transfer for your return trip). Get off at Haight Street. Cross Fillmore and walk 1/2 block west.\nIf you prefer to use the MUNI underground rather than a MUNI bus, you can walk about 5 blocks from the N Judah stop at Duboce and Fillmore and go uphill on Fillmore to Haight."
         },
         {
             "name": "Cellarmaker Brewery",
-            "url": "http://beerbybart.com/why/cellarmaker-brewery-civic-center/"
+            "url": "http://beerbybart.com/why/cellarmaker-brewery-civic-center/",
+            "directions": "Exit BART through the exit labeled B2. Walk down 8th Street, (you could walk down 7th, but you may find 8th less daunting, especially in the evening). Just take 8th St. southeast from Market Street (into SOMA, the South of Market neighborhood.) Turn left off 8th onto Howard and look for the former garage at 1150, opposite the end of little Raucsh Street across Howard."
         },
         {
             "name": "City Beer Store",
-            "url": "http://baybeertrain.wordpress.com/why/city-beer/"
+            "url": "http://baybeertrain.wordpress.com/why/city-beer/",
+            "directions": "Exit BART through the exit labeled B2. Walk down 8th Street, (you could walk down 7th, but you may find 8th less daunting, especially in the evening). Just take 8th Street southeast from Market Street (into SOMA, the South of Market neighborhood.) Turn left off 8th onto Folsom and look for the basement-level shop at 1168 Folsom."
         },
         {
             "name": "Magnolia Gastropub",
-            "url": "http://beerbybart.com/why/magnolia-brewpub-civic-center/"
+            "url": "http://beerbybart.com/why/magnolia-brewpub-civic-center/",
+            "directions": " From the east, go to Civic Center BART, exit on the north side of Market St. Take MUNI bus #6, 7, or 71 which go up Market and turn on Haight Street. (Bus fare is $1.50 exact change. Dollar bills are allowed.) Get off at Masonic Street. Magnolia is on the northeast corner.\nFrom the south, go to 16th St BART, exit on the east side of Mission St. Take the 22 Fillmore bus from the northeast corner of 16th and Mission (remember to ask for a transfer). Get off at Haight Street and either walk uphill 8 blocks or use the transfer to take any bus that comes your way."
         },
         {
             "name": "Suppenküche",
-            "url": "http://beerbybart.com/why/suppenkuche-civic-center/"
+            "url": "http://beerbybart.com/why/suppenkuche-civic-center/",
+            "directions": " Walking from BART: Exit BART on the north side of Market St. Walk west on Market to Hayes Street.  Walk up Hayes Street 6 blocks to Laguna.  Suppenküche is on the southwest corner."
         },
         {
             "name": "The Beer Hall",
-            "url": "http://beerbybart.com/why/the-beer-hall-civic-center/"
+            "url": "http://beerbybart.com/why/the-beer-hall-civic-center/",
+            "directions": "Exit BART through the exit labeled A1. Turn left at the top of the stairs and walk a few steps to Market Street. Turn right and walk 2 blocks west along Market St. to the 3-way intersection of Market St, Fell St. and Polk St. Cross the first street, Polk, onto the sidewalk, turning right. The Beer Hall will be on your left."
         },
         {
             "name": "Lucky 13",
-            "url": "http://beerbybart.com/why/lucky-13/"
+            "url": "http://beerbybart.com/why/lucky-13/",
+            "directions": " You could walk from Civic Center BART or 16th Street BART, though it’s over a mile. You may want to take SF MUNI to get to within a block. From the east: at your choice of the Embarcadero, Montgomery, Powell or Civic Center stations, exit BART and enter MUNI Metro underground in the same station. (You will have to pay again.) Take MUNI outbound trains K, L, M or T to Church Street Station. Exit MUNI on the North (outbound) side of the platform where you got off. Walk 1/2 block uphill along Market to Lucky 13.\nFrom the south, if you prefer, get off at 16th St BART, exit on the east side of Mission Street. Take the 22 Fillmore bus from the northeast corner of 16th and Mission. Get off at Market Street. Cross both Market and Church Streets and walk 1/2 block west."
         },
         {
             "name": "Social Kitchen Brewery",
-            "url": "http://beerbybart.com/why/social-kitchen-brewery/"
+            "url": "http://beerbybart.com/why/social-kitchen-brewery/",
+            "directions": " Arrive at Civic Center BART, go up to the fare gate level within the station, exit and then enter the SF MUNI system. Take MUNI route N-Judah Outbound. The trip is about 3.4 miles and takes about 17 minutes. Your light rail vehicle will emerge from underground, then go through a tunnel, and next take a few turns as you approach the numbered avenues. Get off at 9th Avenue. Social Kitchen is south half a block at 1326 9th Avenue."
         },
         {
             "name": "Woods Polk Station",
-            "url": "http://beerbybart.com/why/woods-polk-station-civic-center/"
+            "url": "http://beerbybart.com/why/woods-polk-station-civic-center/",
+            "directions": "Exit BART through the exit labeled A1. The bus stop for the #19 Polk Bus will be behind the stairway on Market St. Board the bus ($2.00 exact change or Clipper Card). Get off at Green St. Cross Polk St. at Green. Turn left and you’ll see Woods Polk Station."
         },
         {
             "name": "Beach Chalet",
-            "url": "http://beerbybart.com/why/beach-chalet/"
+            "url": "http://beerbybart.com/why/beach-chalet/",
+            "directions": "  Civic Center BART, exit BART and enter MUNI Metro underground in the same station.  Take the N-Judah outbound to the end of the line. Walk out to the end of Judah. (Windy isn’t it?) Turn right along the ocean on the Great Highway for about a third of a mile to the Beach Chalet, the only building you’ll see."
         }
     ],
     "16th Street Station, S.F.": [
         {
             "name": "The Monk’s Kettle",
-            "url": "http://beerbybart.com/why/monks-kettle-16th-st-sf/"
+            "url": "http://beerbybart.com/why/monks-kettle-16th-st-sf/",
+            "directions": " Walking from 16th Street BART: Walk west on 16th one and a half blocks across Valencia St. to The Monk’s Kettle directly at the corner of Albion Street."
         },
         {
             "name": "Abbot’s Cellar",
-            "url": "http://beerbybart.com/why/the-abbots-cellar-16th-st-sf/"
+            "url": "http://beerbybart.com/why/the-abbots-cellar-16th-st-sf/",
+            "directions": "    Walk west up 16th Street to Valencia.  Turn left and continue, passing by an assortment of interesting and trendy restaurants, to number 742, tucked in under 740."
         },
         {
             "name": "Zeitgeist",
-            "url": "http://beerbybart.com/why/zeitgeist/"
+            "url": "http://beerbybart.com/why/zeitgeist/",
+            "directions": " Walking from 16th Street BART: Walk north on Mission Street three blocks, then turn left on Duboce two blocks. The entrance is just around the corner on Valencia Street."
         },
         {
             "name": "Cervecería de MateVeza",
-            "url": "http://beerbybart.com/why/cerveceria-mateveza-16th-st-sf/"
+            "url": "http://beerbybart.com/why/cerveceria-mateveza-16th-st-sf/",
+            "directions": "  MateVeza is not quite three quarters of a mile from 16th Street BART. You’ll enjoy walking west up 16th Street toward Valencia, turning left on Dolores, where you can peek at Mission Dolores, founded by Spanish explorers in 1776. Continue   past the ornate old high school building to turn right onto 18th Street. Dolores Park is on your left for a block, then you’ll find MateVeza on the corner.  There’s also a light rail stop for the J train a few steps from the little cafe, if you prefer to take MUNI.\n"
         },
         {
             "name": "Steep Brew",
-            "url": "http://beerbybart.com/why/steep-brew-at-whole-foods-16th-st-sf/"
+            "url": "http://beerbybart.com/why/steep-brew-at-whole-foods-16th-st-sf/",
+            "directions": "  Steep Brew is slightly beyond the one mile limit we chose for our recommended walks, so unless you prefer the exercise, grab the MUNI bus or call a cab. Exit BART and go to the southwest corner of 16th at Mission Street to the bus stop for the 22. Take the 22 bus about a mile east on 16th. It will turn right and then left onto 17th Street. Get off at 17th and De Haro Street. Walk back 1 block on 17th to the corner of Rhode Island Street for Steep Brew."
         },
         {
             "name": "Southern Pacific Brewing",
-            "url": "http://beerbybart.com/why/southern-pacific-brewing-16th-st-sf/"
+            "url": "http://beerbybart.com/why/southern-pacific-brewing-16th-st-sf/",
+            "directions": "  Walking from 16th Street BART: Walk south on Mission Street to 19th Street. Turn left and walk 5 blocks to Treat Avenue. Turn right and continue half a block to the brewpub compound on the right."
         },
         {
             "name": "Southpaw BBQ",
-            "url": "http://beerbybart.com/why/southpaw-bbq-16th-st-sf/"
+            "url": "http://beerbybart.com/why/southpaw-bbq-16th-st-sf/",
+            "directions": "Walking from 16th Street BART: Exit out of BART at 16th and Mission. Walk two blocks south along Mission Street to number 2179."
         }
     ],
     "24th Street Station, S.F.": [
         {
             "name": "Rosamunde Sausage Grill",
-            "url": "http://beerbybart.com/why/rosamunde-sausage-grill-24th-st-sf/"
+            "url": "http://beerbybart.com/why/rosamunde-sausage-grill-24th-st-sf/",
+            "directions": " From 24th Street BART, exit the southwest escalator/stairs and walk south on Mission St. about 50 yards to Rosamunde."
         },
         {
             "name": "Pi Bar",
-            "url": "http://beerbybart.com/why/pi-bar-24th-st-sf/"
+            "url": "http://beerbybart.com/why/pi-bar-24th-st-sf/",
+            "directions": " From 24th Street BART, walk west on 24th (slightly uphill) and turn left on Valencia Street. Pi Bar will be on the right at 1432, between 25th and 26th Streets. Look for the sign with the symbol π."
         },
         {
             "name": "Shotwell’s",
-            "url": "http://beerbybart.com/why/shotwells-24th-street/"
+            "url": "http://beerbybart.com/why/shotwells-24th-street/",
+            "directions": " Walking from BART: Since this part of the Mission is laid out grid-style, you have several easy alternatives to walk to Shotwell’s from 24th Street. Any combination of 3 blocks east and 4 blocks north will work. You’ll note it’s just as close to 16th Street Station, for an approach from the opposite direction."
         },
         {
             "name": "Amnesia",
-            "url": "http://beerbybart.com/why/amnesia-16th-or-24th-st-bart/"
+            "url": "http://beerbybart.com/why/amnesia-16th-or-24th-st-bart/",
+            "directions": " From 16th Street BART, walk west on 16th to Valencia, then turn left and enjoy walking about four blocks along Valencia. You’ll see their sign just beyond 19th Street.\nFrom 24th Street BART, walk west on 24th and turn right on Valencia Street. Amnesia will be on the right at 853, past 20th Street. You can come from either BART station, it’s about half way."
         }
     ],
     "Balboa Park Station": [
         {
             "name": "Dark Horse Inn",
-            "url": "http://beerbybart.com/why/dark-horse-inn-balboa-park/"
+            "url": "http://beerbybart.com/why/dark-horse-inn-balboa-park/",
+            "directions": "Exit Balboa Park BART by following the sign for “Geneva Ave. North” up a flight of stairs. Head left onto Geneva Ave. Stay on Geneva until you get to Mission. Cross Mission and then cross Geneva. Continue up Geneva a few doors and The Dark Horse will be on your right. Note that the walk from this BART station can be desolate at night. You might consider taking a cab for the 1/2 mile trip or as an alternative, get off BART at 24th St. and take a Mission Street bus (#14 or #49) south to the corner of Mission St. and Geneva Ave."
         },
         {
             "name": "The Ave Bar",
-            "url": "http://beerbybart.com/why/the-ave-bar-balboa-park/"
+            "url": "http://beerbybart.com/why/the-ave-bar-balboa-park/",
+            "directions": "Exit Balboa Park BART through the Ocean Ave. exit. Head right to Ocean Ave. Turn left on Ocean and walk over the pedestrian bridge and continue on Ocean to The Ave Bar.  Note that the walk from this BART station can be desolate at night. You might consider taking the KT Light rail towards Visitacion Valley via Downtown or a cab for the 3/4 mile trip."
         }
     ],
     "San Bruno Station": [
         {
             "name": "BJs",
-            "url": "http://beerbybart.com/why/bjs-restaurant-brewhouse-san-bruno/"
+            "url": "http://beerbybart.com/why/bjs-restaurant-brewhouse-san-bruno/",
+            "directions": "Walking from BART: From the BART station, exit towards the garage and the Tanforan Shopping Center.    You’re essentially there!  If a closed chain link gate blocks the shortest way, just head the right around the shiny round police building.  Enter the shopping mall, where you’ll find a map of the stores. Go to the upper level, head past the JC Penny’s to BJ’s restaurant near the far entrance on the other side of the mall. (Note that the “upper level” is ground level on that side of Tanforan.  BJs has a large visible silo (tall grain tank) out front on the parking lot indicating it’s a brewhouse, should you walk around outside of the mall.)"
         }
     ]
 }
