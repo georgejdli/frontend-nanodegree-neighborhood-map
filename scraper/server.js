@@ -9,14 +9,25 @@ var cheerio = require('cheerio');
 var app     = express();
 
 app.get('/scrape', function(req, res){
-    // URL for  Beer by BART
     
-    var link = 'http://beerbybart.com/';
+    // URL for  Beer by BART
+    var url = 'http://beerbybart.com/';
 
     // The structure of our request call
     // The first parameter is our URL
     // The callback function takes 3 parameters, an error, response status code and the html
-    request(link, function(error, response, html){
+    request(url, function(error, response, html){
+        
+        //This function will write the collected data into a JSON file
+        //called output.json. It is called when all requests to each bar info
+        //page have been completed
+        function writeToJSON () {
+            fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
+
+                console.log('File successfully written! - Check your project directory for the output.json file');
+            });
+        }
+
         // First we'll check to make sure no errors occurred when making the request
 
         if(!error) {
@@ -25,6 +36,11 @@ app.get('/scrape', function(req, res){
             var $ = cheerio.load(html);
 
             var json = {};
+            
+            //use a counter to make sure we don't output the JSON file before all the requests have finished
+            //after each bar name has been grabbed the counter will increment
+            //when the request to each bar info page has been completed
+            //the counter will decrement
             var counter = 0;
 
             //function method filters , and then excecutes the function for each item in the filtered group
@@ -40,8 +56,9 @@ app.get('/scrape', function(req, res){
                 //initial each station array to hold each bar object
                 json[station] = [];
 
-                //use another filter to iterate over the child elements to get the bar name and the link to the info page
-                data.children().first().children().first().children().filter(function(i){
+                //For the current BART station, grab the name, 
+                //url, and directions for each bar and create an object
+                data.children().first().children().first().children().filter(function(currentStation){
                     //$(this) is the li that has <a> tags
                     var barRegex,
                         name,
@@ -51,12 +68,13 @@ app.get('/scrape', function(req, res){
                     
                     barRegex = /.*?(?=\(|$)/;
                     name = $(this).find('a').text();
-                    //strip the end of the name string of whitespace and (
+                    //strip the end of the name string of whitespace and ('s
                     name = name.match(barRegex)[0].trim();
                     console.log(name);
                     
+                    //callback to create bar object when directions are grabbed
                     function directionsCallback() {
-                            json[station][i] = {'name': name, 
+                            json[station][currentStation] = {'name': name, 
                                                 'url': url,
                                                 'directions': directions
                                                 };
@@ -65,14 +83,18 @@ app.get('/scrape', function(req, res){
                     if(name) {
                         counter = counter + 1;
                         url = $(this).find('a').attr('href');
-                        //call back function is executing AFTER json has been written
+
+                        //follow the url for each bar info page and
+                        //scrape the directions
                         request(url, function(error, response, html){
                             if(!error) {
                                 var $ = cheerio.load(html);
 
-                                directions = $('.entrytext > blockquote').text();
+                                directions = $('.entrytext > blockquote').children().first().text().trim() || $('.entrytext').find('img').parent().text();
+                                //For triple rock berkeley directions aren't inside a blockquote tag
+                                //alternative: find element with img child, that img child has src attribute? maybe no need for src attribute
                             }
-                            //console.log("Request description");
+
                             directionsCallback();
                             if(--counter === 0) {
                                 writeToJSON();
@@ -83,14 +105,6 @@ app.get('/scrape', function(req, res){
                     }
                 });
             });
-            
-            function writeToJSON () {
-                fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
-
-                    console.log('File successfully written! - Check your project directory for the output.json file');
-                });
-            }
-
         }
     });
 
