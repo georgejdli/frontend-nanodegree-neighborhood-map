@@ -1,9 +1,9 @@
 {
-  "name"         : "node-web-scrape",
+  "name"         : "node-web-scrape-beerbybart",
   "version"      : "0.0.1",
-  "description"  : "Scrape le web.",
+  "description"  : "Scrape beerbybary.com for infor on bars listed",
   "main"         : "server.js",
-  "author"       : "Scotch",
+  "author"       : "George Li",
   "dependencies" : {
     "express"    : "latest",
     "request"    : "latest",

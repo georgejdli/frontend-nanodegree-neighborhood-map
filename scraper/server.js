@@ -37,7 +37,7 @@ app.get('/scrape', function(req, res){
 
             var json = {};
             
-            //use a counter to make sure we don't output the JSON file before all the requests have finished
+            //use a counter to make sure we don't output the JSON file before all the requests have finished (since these request are async)
             //after each bar name has been grabbed the counter will increment
             //when the request to each bar info page has been completed
             //the counter will decrement
@@ -91,11 +91,12 @@ app.get('/scrape', function(req, res){
                                 var $ = cheerio.load(html);
 
                                 directions = $('.entrytext > blockquote').children().first().text().trim() || $('.entrytext').find('img').parent().text();
-                                //For triple rock berkeley directions aren't inside a blockquote tag
-                                //alternative: find element with img child, that img child has src attribute? maybe no need for src attribute
                             }
 
                             directionsCallback();
+                            
+                            //counter reaches 0 when all the requests for bar
+                            //directions have completed
                             if(--counter === 0) {
                                 writeToJSON();
                             }
