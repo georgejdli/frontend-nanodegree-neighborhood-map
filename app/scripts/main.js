@@ -87,8 +87,8 @@ ko.bindingHandlers.map = {
 
         var request = {
             bounds: defaultBounds,
-            query: '21st Amendment (Montgomery)',
-            types: ['bar']
+            query: '21st Amendment'
+            //types: ['bar']
         };
 
         mapObj.infowindow = new google.maps.InfoWindow();
@@ -96,7 +96,7 @@ ko.bindingHandlers.map = {
         mapObj.service.textSearch(request, callback);
 
         function callback(results, status) {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
                     createMarker(results[0]);
                     console.log('callback');
             }
@@ -124,7 +124,55 @@ ko.bindingHandlers.map = {
         
         mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         
+        //have user switch between searching for bar and station?
+        //then I could use the search box as just a filter for BART stations
+        //and limit to results to just bart stations
         var searchBox = new google.maps.places.SearchBox(input);
+        //limit searches to within default bounds (SF Bay Area)
+        searchBox.setBounds(defaultBounds);
+        var markers = [];
+
+        //Listen for search event when user picks a locations
+        google.maps.event.addListener(searchBox, 'places_changed', function() {
+            var places = searchBox.getPlaces();
+            consle.log(places);
+
+            if(places.length === 0) {
+                return;
+            }
+
+            for (var i = 0, marker; marker = markers[i]; i++) {
+                marker.setMap(null);
+            }
+
+            // For each place, get the icon, place name, and location.
+            markers = [];
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0, place; place = places[i]; i++) {
+                var image = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                var marker = new google.maps.Marker({
+                map: mapObj.googleMap,
+                icon: image,
+                title: place.name,
+                position: place.geometry.location
+                });
+
+                markers.push(marker);
+
+                bounds.extend(place.geometry.location);
+            }
+
+            mapObj.googleMap.fitBounds(bounds);
+
+        });
 
         
         //$('#' + element.getAttribute('id')).data('mapObj',mapObj);
@@ -143,3 +191,5 @@ $(document).ready(function() {
 //When results are filtered out hide the markers with marker.setVisible(false)
 //idea: load all the markers initially; when searching by station just zoom 
 //when searching by bar name then just use a filter
+
+//hard code the latitude and longitude in beer.js to avoid having to look up places all the time
