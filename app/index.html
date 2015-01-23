@@ -40,7 +40,14 @@
       <h3 class="text-muted">frontend-nanodegree-neighborhood-map</h3>
     </div> -->
   <!--Google Places Search Box Element-->  
-  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+  <input id="pac-input" class="controls" type="text" placeholder="Enter BART Station Name" data-bind="value: appendBART, setCursorPosZero: searchBART">
+  <div id="type-selector" class="controls">
+    <input type="radio" name="type" id="changetype-all" value="false" data-bind="checked: searchBART">
+    <label for="changetype-all">All</label>
+    <input type="radio" name="type" id="changetype-address" value="true" data-bind="checked: searchBART">
+    <label for="changetype-address">BART Stations</label>
+  </div>
+
   <div id="map-canvas" data-bind="map: myMap"></div>
 
     <!-- build:js scripts/vendor.js -->

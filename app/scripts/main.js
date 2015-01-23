@@ -16,15 +16,22 @@ define(['jquery', 'knockout'], function($, ko) {
     Model: Applicatiohn's stored data. Make AJAX calls to some server side code read and write this stored model data.
  */
 
-var MapMarker = function() {
-
+//jQuery SET CURSOR POSITION
+//source: http://www.sitepoint.com/jqueryhtml5-input-focus-cursor-positions/
+$.fn.setCursorPosition = function(pos) {
+  this.each(function(index, elem) {
+    if (elem.setSelectionRange) {
+      elem.setSelectionRange(pos, pos);
+    } else if (elem.createTextRange) {
+      var range = elem.createTextRange();
+      range.collapse(true);
+      range.moveEnd('character', pos);
+      range.moveStart('character', pos);
+      range.select();
+    }
+  });
+  return this;
 };
-
-var pointsOfInterest = [
-    {name: 'Golden Gate Bakery', lat: 37.796403688833124, lng: -122.40689384384154},
-    {name: 'Chinese Consulate-General', lat: 37.78469908113653, lng: -122.42779898090362},
-    {name: 'Hard Knox Cafe', lat: 37.78224431215672, lng: -122.48572396678924}
-];
 
 var MyViewModel = function() {
     var self = this;
@@ -33,10 +40,33 @@ var MyViewModel = function() {
         lng: ko.observable(-122.401309),
         zoom: ko.observable(13),
         mapTypeID: ko.observable('roadmap'),
-        infowindow: ''
+        infowindow: '',
     });
-    //self.myMap().googleMap to access google map object to add markers
+    
+    //If radio button for BART Stations is selected, then "BART" will be
+    // prefilled on the search form to make search for a station a bit easier
     self.mySearch = ko.observable('Enter a search term');
+    self.searchBART = ko.observable("false");
+    self.appendBART = ko.computed(function() {
+        if(self.searchBART() === "true") {
+            
+            return ' BART';
+        } else {
+            return '';
+        }
+    });
+    self.isSelected = ko.observable(false);
+};
+
+//When searchBART radio button is selected, ' BART' will be added to search box
+//This custom binding handler will place the caret at the starting position
+//of the input box so a user can easily type the station name before ' BART'
+ko.bindingHandlers.setCursorPosZero = {
+    update: function(element, valueAccessor, allBindings, bindingContext) {
+        if( ko.unwrap(valueAccessor()) ) {
+            $(element).focus().setCursorPosition(0);
+        }
+    }
 };
 
 //Define custom binding for google Maps using the below resources
@@ -51,9 +81,19 @@ ko.bindingHandlers.map = {
         };
         var zoom = ko.unwrap(mapObj.zoom),
             mapTypeID = ko.unwrap(mapObj.mapTypeID);
-        var mapOptions = {center: latLng,
-                            zoom: zoom,
-                            mapTypeID: mapTypeID};
+        var mapOptions = {
+            center: latLng,
+            zoom: zoom,
+            mapTypeID: mapTypeID,
+            streetViewControl: false,
+            panControlOptions: {
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            },
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            }
+        };
+            
         mapObj.googleMap = new google.maps.Map(element, mapOptions);
 
         var image = {
@@ -66,25 +106,6 @@ ko.bindingHandlers.map = {
             new google.maps.LatLng(37.574255, -122.517149),
             new google.maps.LatLng(38.027824, -121.851789));
         
-        /*pointsOfInterest.forEach(function(point, index) {
-            mapObj.marker = new google.maps.Marker({
-                //marker will not be displayed if map is not specified
-                //can use marker.setMap(map) to set it later
-                map: mapObj.googleMap,
-                //position: latLng,
-                position: new google.maps.LatLng(point.lat, point.lng),
-                //title appears as a tool tip
-                title: point.name,
-                //can use animation to indicate selected marker
-                //toggle between marker.setAnimation(google.maps.Animation.BOUNCE
-                //and marker.setAnimation(null)
-                //google.maps.event.addListener(marker, 'click', toggleBounce);
-                //animation: google.maps.Animation.BOUNCE,
-                //icon: image
-                //draggable: true
-            });
-        });*/
-
         var request = {
             bounds: defaultBounds,
             query: '21st Amendment'
@@ -121,61 +142,61 @@ ko.bindingHandlers.map = {
         //https://developers.google.com/maps/documentation/javascript/examples/places-searchbox
         
         var input = document.getElementById('pac-input');
-        
+        var types = document.getElementById('type-selector');
+
         mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         
-        //have user switch between searching for bar and station?
-        //then I could use the search box as just a filter for BART stations
-        //and limit to results to just bart stations
-        var searchBox = new google.maps.places.SearchBox(input);
-        //limit searches to within default bounds (SF Bay Area)
-        searchBox.setBounds(defaultBounds);
-        var markers = [];
+         mapObj.googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(types);
 
-        //Listen for search event when user picks a locations
-        google.maps.event.addListener(searchBox, 'places_changed', function() {
-            var places = searchBox.getPlaces();
-            consle.log(places);
+        var autocomplete = new google.maps.places.Autocomplete(input, {
+            bounds: defaultBounds
+        });
+        autocomplete.bindTo('bounds', mapObj.googleMap);
 
-            if(places.length === 0) {
-                return;
-            }
-
-            for (var i = 0, marker; marker = markers[i]; i++) {
-                marker.setMap(null);
-            }
-
-            // For each place, get the icon, place name, and location.
-            markers = [];
-            var bounds = new google.maps.LatLngBounds();
-            for (var i = 0, place; place = places[i]; i++) {
-                var image = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-                };
-
-                // Create a marker for each place.
-                var marker = new google.maps.Marker({
-                map: mapObj.googleMap,
-                icon: image,
-                title: place.name,
-                position: place.geometry.location
-                });
-
-                markers.push(marker);
-
-                bounds.extend(place.geometry.location);
-            }
-
-            mapObj.googleMap.fitBounds(bounds);
-
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+        map: mapObj.googleMap,
+        anchorPoint: new google.maps.Point(0, -29)
         });
 
-        
-        //$('#' + element.getAttribute('id')).data('mapObj',mapObj);
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+        infowindow.close();
+        marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          return;
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+          mapObj.googleMap.fitBounds(place.geometry.viewport);
+        } else {
+          mapObj.googleMap.setCenter(place.geometry.location);
+          mapObj.googleMap.setZoom(17);  // Why 17? Because it looks good.
+        }
+        marker.setIcon(/** @type {google.maps.Icon} */({
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(35, 35)
+        }));
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+
+        var address = '';
+        if (place.address_components) {
+          address = [
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
+          ].join(' ');
+        }
+
+        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+        infowindow.open(mapObj.googleMap, marker);
+        });
+
     }
 };
 

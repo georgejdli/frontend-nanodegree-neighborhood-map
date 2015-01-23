@@ -1,0 +1,3 @@
+jQuery Set Cursor Position function
+http://www.sitepoint.com/jqueryhtml5-input-focus-cursor-positions/
+
