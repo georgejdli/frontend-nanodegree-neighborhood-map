@@ -94,56 +94,22 @@ ko.bindingHandlers.map = {
             }
         };
             
+        //create and initialize google map object
         mapObj.googleMap = new google.maps.Map(element, mapOptions);
 
-        var image = {
-            url: '',
-            size: new google.maps.Size(20, 32),
-            origin: new google.maps.Point(0,0),
-            anchor: new google.maps.Point(10,32)
-        };
+        //set map bounds for BART train network
         var defaultBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng(37.574255, -122.517149),
-            new google.maps.LatLng(38.027824, -121.851789));
+            new google.maps.LatLng(38.027824, -121.851789));        
         
-        var request = {
-            bounds: defaultBounds,
-            query: '21st Amendment'
-            //types: ['bar']
-        };
-
-        mapObj.infowindow = new google.maps.InfoWindow();
-        mapObj.service = new google.maps.places.PlacesService(mapObj.googleMap);
-        mapObj.service.textSearch(request, callback);
-
-        function callback(results, status) {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    createMarker(results[0]);
-                    console.log('callback');
-            }
-        }
-
-        function createMarker(place) {
-            var placeLoc = place.geometry.location;
-            var marker = new google.maps.Marker({
-                map: mapObj.googleMap,
-                position: placeLoc
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-                mapObj.infowindow.setContent(place.name);
-                mapObj.infowindow.open(mapObj.googleMap, this);
-              });
-        }
-        
-        
-        //map.fitBounds(defaultBounds);
-        
-        //create search box, search box is an input element seperate from map div
-        //https://developers.google.com/maps/documentation/javascript/examples/places-searchbox
+        //create autocomplete search box 
+        //search box is an input element seperate from map div
+        //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
         
         var input = document.getElementById('pac-input');
         var types = document.getElementById('type-selector');
 
+        //set position for search box and search type selector
         mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         
          mapObj.googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(types);
@@ -155,48 +121,47 @@ ko.bindingHandlers.map = {
 
         var infowindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
-        map: mapObj.googleMap,
-        anchorPoint: new google.maps.Point(0, -29)
+            map: mapObj.googleMap,
+            anchorPoint: new google.maps.Point(0, -29)
         });
 
         google.maps.event.addListener(autocomplete, 'place_changed', function(){
-        infowindow.close();
-        marker.setVisible(false);
-        var place = autocomplete.getPlace();
-        if (!place.geometry) {
-          return;
-        }
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
 
-        // If the place has a geometry, then present it on a map.
-        if (place.geometry.viewport) {
-          mapObj.googleMap.fitBounds(place.geometry.viewport);
-        } else {
-          mapObj.googleMap.setCenter(place.geometry.location);
-          mapObj.googleMap.setZoom(17);  // Why 17? Because it looks good.
-        }
-        marker.setIcon(/** @type {google.maps.Icon} */({
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(35, 35)
-        }));
-        marker.setPosition(place.geometry.location);
-        marker.setVisible(true);
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                mapObj.googleMap.fitBounds(place.geometry.viewport);
+            } else {
+                mapObj.googleMap.setCenter(place.geometry.location);
+                mapObj.googleMap.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker.setIcon(/** @type {google.maps.Icon} */({
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(35, 35)
+            }));
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
 
-        var address = '';
-        if (place.address_components) {
-          address = [
-            (place.address_components[0] && place.address_components[0].short_name || ''),
-            (place.address_components[1] && place.address_components[1].short_name || ''),
-            (place.address_components[2] && place.address_components[2].short_name || '')
-          ].join(' ');
-        }
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
 
-        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-        infowindow.open(mapObj.googleMap, marker);
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+            infowindow.open(mapObj.googleMap, marker);
         });
-
     }
 };
 
@@ -206,8 +171,6 @@ $(document).ready(function() {
 });
 
 
-//BART counts as a train_station and can be used to filter places search
-//Use array of BART stations for search autocomplete
 //let user search for a location and find the nearest BART station for them
 //When results are filtered out hide the markers with marker.setVisible(false)
 //idea: load all the markers initially; when searching by station just zoom 
