@@ -108,7 +108,7 @@ ko.bindingHandlers.map = {
         //search box is an input element seperate from map div
         //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
         
-        var input = document.getElementById('pac-input');
+/*        var input = document.getElementById('pac-input');
         var types = document.getElementById('type-selector');
 
         //set position for search box and search type selector
@@ -117,6 +117,62 @@ ko.bindingHandlers.map = {
          mapObj.googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(types);
 
         var autocomplete = new google.maps.places.Autocomplete(input, {
+            bounds: ko.unwrap(mapObj.defaultBounds)
+        });
+        autocomplete.bindTo('bounds', mapObj.googleMap);
+
+        mapObj.infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+            map: mapObj.googleMap,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+            mapObj.infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                mapObj.googleMap.fitBounds(place.geometry.viewport);
+            } else {
+                mapObj.googleMap.setCenter(place.geometry.location);
+                mapObj.googleMap.setZoom(17);  // Why 17? Because it looks good.
+            }*/
+            //marker.setIcon(/** @type {google.maps.Icon} */({
+               /* url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(35, 35)
+            }));
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+
+            mapObj.infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+            mapObj.infowindow.open(mapObj.googleMap, marker);
+        });*/
+    }
+};
+
+ko.bindingHandlers.autocompleteSearchBox = {
+    init: function(element, valueAccessor, allBindings, bindingContext) {
+        var mapObj = ko.unwrap(valueAccessor());
+        //set position for search box 
+        mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(element);
+        var autocomplete = new google.maps.places.Autocomplete(element, {
             bounds: ko.unwrap(mapObj.defaultBounds)
         });
         autocomplete.bindTo('bounds', mapObj.googleMap);
@@ -167,9 +223,13 @@ ko.bindingHandlers.map = {
     }
 };
 
-ko.bindingHandlers.autocompleteSearchBox = {
-
-}
+ko.bindingHandlers.typeSelector = {
+    init: function(element, valueAccessor, allBindings, bindingContext) {
+        var mapObj = ko.unwrap(valueAccessor());
+        //set position for search type selector
+        mapObj.googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(element);
+    }
+};
 
 var viewModel = new MyViewModel();
 $(document).ready(function() {
