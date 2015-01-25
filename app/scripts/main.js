@@ -36,11 +36,24 @@ $.fn.setCursorPosition = function(pos) {
 var MyViewModel = function() {
     var self = this;
     self.myMap = ko.observable({
-        lat: ko.observable(37.789307),
-        lng: ko.observable(-122.401309),
+        //google Map obejct will be created by the custom map bindinghandler
+        googleMap: '',
+        //the following are options that will be passed to the Map constructor
+        center: ko.observable(new google.maps.LatLng(37.789307, -122.401309)),
         zoom: ko.observable(13),
         mapTypeID: ko.observable('roadmap'),
-        infowindow: '',
+        streetViewControl: false,
+        panControlOptions: {
+            position: google.maps.ControlPosition.LEFT_BOTTOM
+        },
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_BOTTOM
+        },
+        //set map bounds for BART train network
+        defaultBounds: new google.maps.LatLngBounds(
+            new google.maps.LatLng(37.574255, -122.517149),
+            new google.maps.LatLng(38.027824, -121.851789)),
+        infowindow: ''
     });
     
     //If radio button for BART Stations is selected, then "BART" will be
@@ -48,8 +61,7 @@ var MyViewModel = function() {
     self.mySearch = ko.observable('Enter a search term');
     self.searchBART = ko.observable("false");
     self.appendBART = ko.computed(function() {
-        if(self.searchBART() === "true") {
-            
+        if(self.searchBART() === "true") {  
             return ' BART';
         } else {
             return '';
@@ -75,32 +87,22 @@ ko.bindingHandlers.setCursorPosZero = {
 ko.bindingHandlers.map = {
     init: function(element, valueAccessor, allBindings, bindingContext) {
         var mapObj = ko.unwrap(valueAccessor());
-        var latLng = {
-            lat: ko.unwrap(mapObj.lat), 
-            lng: ko.unwrap(mapObj.lng)
-        };
+        var center = ko.unwrap(mapObj.center);
         var zoom = ko.unwrap(mapObj.zoom),
+            streetViewControl = ko.unwrap(mapObj.streetViewControl),
             mapTypeID = ko.unwrap(mapObj.mapTypeID);
+        //TODO: write a function to automatically created the options object?
         var mapOptions = {
-            center: latLng,
+            center: center,
             zoom: zoom,
             mapTypeID: mapTypeID,
-            streetViewControl: false,
-            panControlOptions: {
-                position: google.maps.ControlPosition.LEFT_BOTTOM
-            },
-            zoomControlOptions: {
-                position: google.maps.ControlPosition.LEFT_BOTTOM
-            }
+            streetViewControl: streetViewControl,
+            panControlOptions: ko.unwrap(mapObj.panControlOptions),
+            zoomControlOptions: ko.unwrap(mapObj.zoomControlOptions)
         };
             
         //create and initialize google map object
         mapObj.googleMap = new google.maps.Map(element, mapOptions);
-
-        //set map bounds for BART train network
-        var defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(37.574255, -122.517149),
-            new google.maps.LatLng(38.027824, -121.851789));        
         
         //create autocomplete search box 
         //search box is an input element seperate from map div
@@ -115,18 +117,18 @@ ko.bindingHandlers.map = {
          mapObj.googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(types);
 
         var autocomplete = new google.maps.places.Autocomplete(input, {
-            bounds: defaultBounds
+            bounds: ko.unwrap(mapObj.defaultBounds)
         });
         autocomplete.bindTo('bounds', mapObj.googleMap);
 
-        var infowindow = new google.maps.InfoWindow();
+        mapObj.infowindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
             map: mapObj.googleMap,
             anchorPoint: new google.maps.Point(0, -29)
         });
 
         google.maps.event.addListener(autocomplete, 'place_changed', function(){
-            infowindow.close();
+            mapObj.infowindow.close();
             marker.setVisible(false);
             var place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -159,11 +161,15 @@ ko.bindingHandlers.map = {
                 ].join(' ');
             }
 
-            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-            infowindow.open(mapObj.googleMap, marker);
+            mapObj.infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+            mapObj.infowindow.open(mapObj.googleMap, marker);
         });
     }
 };
+
+ko.bindingHandlers.autocompleteSearchBox = {
+
+}
 
 var viewModel = new MyViewModel();
 $(document).ready(function() {
