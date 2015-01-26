@@ -100,7 +100,7 @@ app.get('/scrape', function(req, res){
                             if(--counter === 0) {
                                 writeToJSON();
                             }
-                            console.log(counter);
+                            //console.log(counter);
                         });
 
                     }
