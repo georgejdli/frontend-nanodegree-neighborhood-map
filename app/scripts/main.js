@@ -186,53 +186,73 @@ $(document).ready(function() {
     ko.applyBindings(viewModel);
 });
 
-function getCoor() {
+/**
+ * Run scraper/server.js with node to get updated list of bars
+ * Run this in browser console to get geocode location and place_id for each bar
+ * There is a limit of 10 searches/sec so this function will have to be
+ * run multiple times to get the data for each bar.
+ * This function will not work if the placeID property is already defined
+ * When the function returns <=0 all data has been loaded
+ * Use copy(beer) in console to copy object to clipboard
+ * @return {object} Return the number of search requests remaining to run
+ */
+//bug: Lucky 13 returns some location in Slovakia as the only result
+
+var numBars = 0;
+var success = 0;
+for (var station in beer) {
+        beer[station].forEach(function(bar, index) {
+            numBars++;
+        });
+}
+function setCoor() {
     var mapObj = ko.unwrap(viewModel.myMap());
     var service = new google.maps.places.PlacesService(mapObj.googleMap);
-    var counter = 0;
-
+    var SEARCH_LIMIT = 10;
+    var requests = 0;
 
     //textSearch callback function
     function callback(station, index) {
         return function(results, status) {
-            //console.log();
             if (status === google.maps.places.PlacesServiceStatus.OK) {
-                //console.log(++counter);
-                console.log(beer[station][index]);
-                beer[station][index].location = results[0].geometry.location;
+                requests++;
+                success++;
+                beer[station][index].latLng = {lat: '', lng: ''};
+                beer[station][index].latLng.lat = results[0].geometry.location.lat();
+                beer[station][index].latLng.lng = results[0].geometry.location.lng();
                 beer[station][index].placeID = results[0].place_id;
-
-                var address = '';
-            
-                if (results[0].address_components) {
-                address = [
-                (results[0].address_components[0] && results[0].address_components[0].short_name || ''),
-                (results[0].address_components[1] && results[0].address_components[1].short_name || ''),
-                (results[0].address_components[2] && results[0].address_components[2].short_name || '')
-                ].join(' ');
-                beer[station][index].address = address;
-                }
             }
         };
     }
 
     for (var station in beer) {
         beer[station].forEach(function(bar, index) {
-            if (bar.location) {
+            if (requests >= SEARCH_LIMIT) {
                 return;
             }
+            if (bar.placeID) {
+                return;
+            }
+            var name;
+            //Bug in google textSearch, this is a workaround
+            if (bar.name === 'Lucky 13') {
+                name = 'Lucky13';
+            } else {
+                name = bar.name;
+            }
             var request = {
-                query: bar.name,
-                bounds: mapObj.defaultBounds
+                query: name,
+                bounds: mapObj.defaultBounds,
+                types: ['establishment', 'bar']
             };
-            //some searches aren't returning anything
-            //might be limited to 10 searches at once
 
             service.textSearch(request, callback(station, index));
 
         });
     }
+    return {'bars remaining': numBars - success - 10};
 }
+
 //let user search for a location and find the nearest BART station for them
 //When results are filtered out hide the markers with marker.setVisible(false)
 //idea: load all the markers initially; when searching by station just zoom 
