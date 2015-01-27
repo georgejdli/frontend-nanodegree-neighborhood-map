@@ -37,6 +37,7 @@ $.fn.setCursorPosition = function(pos) {
 
 var MyViewModel = function() {
     var self = this;
+
     self.myMap = ko.observable({
         //google Map obejct will be created by the custom map bindinghandler
         googleMap: '',
@@ -60,7 +61,7 @@ var MyViewModel = function() {
         
         //restrict searches to within the USA for more relevant results
         componentRestrictions: {'country': 'us'},
-        infowindow: ''
+        infowindow: new google.maps.InfoWindow()
     });
     
     //If radio button for BART Stations is selected, then "BART" will be
@@ -126,7 +127,6 @@ ko.bindingHandlers.autocompleteSearchBox = {
         });
         autocomplete.bindTo('bounds', mapObj.googleMap);
 
-        mapObj.infowindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
             map: mapObj.googleMap,
             anchorPoint: new google.maps.Point(0, -29)
@@ -158,6 +158,7 @@ ko.bindingHandlers.autocompleteSearchBox = {
             marker.setVisible(true);
 
             var address = '';
+            //address includes street and city only, no zipcode
             if (place.address_components) {
                 address = [
                     (place.address_components[0] && place.address_components[0].short_name || ''),
@@ -185,10 +186,60 @@ $(document).ready(function() {
     ko.applyBindings(viewModel);
 });
 
+function getCoor() {
+    var mapObj = ko.unwrap(viewModel.myMap());
+    var service = new google.maps.places.PlacesService(mapObj.googleMap);
+    var counter = 0;
 
+
+    //textSearch callback function
+    function callback(station, index) {
+        return function(results, status) {
+            //console.log();
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                //console.log(++counter);
+                console.log(beer[station][index]);
+                beer[station][index].location = results[0].geometry.location;
+                beer[station][index].placeID = results[0].place_id;
+
+                var address = '';
+            
+                if (results[0].address_components) {
+                address = [
+                (results[0].address_components[0] && results[0].address_components[0].short_name || ''),
+                (results[0].address_components[1] && results[0].address_components[1].short_name || ''),
+                (results[0].address_components[2] && results[0].address_components[2].short_name || '')
+                ].join(' ');
+                beer[station][index].address = address;
+                }
+            }
+        };
+    }
+
+    for (var station in beer) {
+        beer[station].forEach(function(bar, index) {
+            if (bar.location) {
+                return;
+            }
+            var request = {
+                query: bar.name,
+                bounds: mapObj.defaultBounds
+            };
+            //some searches aren't returning anything
+            //might be limited to 10 searches at once
+
+            service.textSearch(request, callback(station, index));
+
+        });
+    }
+}
 //let user search for a location and find the nearest BART station for them
 //When results are filtered out hide the markers with marker.setVisible(false)
 //idea: load all the markers initially; when searching by station just zoom 
 //when searching by bar name then just use a filter
 
 //hard code the latitude and longitude in beer.js to avoid having to look up places all the time
+
+//don't bother with extending the binding context for descedent bindings
+//putting custom controls like search box and type selector inside the map div
+//doesn't work; they don't render on the map canvas correctly
