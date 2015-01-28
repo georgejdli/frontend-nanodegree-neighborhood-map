@@ -1,3 +1,4 @@
+/* global beer */
 // to depend on a bower installed component:
 // define(['component/componentName/file'])
 /*
@@ -35,8 +36,42 @@ $.fn.setCursorPosition = function(pos) {
   return this;
 };
 
+var Bar = function(data, station) {
+    this.name = data.name;
+    this.url = data.url;
+    this.directions = data.directions;
+    this.latLng = data.latLng;
+    this.placeID = data.placeID;
+    this.station = station;
+};
+
 var MyViewModel = function() {
     var self = this;
+
+    self.bars = [];
+    self.barList = ko.observableArray(self.bars);
+    self.createBar = function(bar) {
+            self.bars.push(new Bar(bar, station));
+        };
+    for (var station in beer) {
+        beer[station].forEach(self.createBar);
+    }
+
+    self.query = ko.observable('');
+    self.search = function(value) {
+        var i,
+            l = self.bars.length;
+        //remove all current bars from view
+        //removeAll() seems to empty out the array passed to self.barList as well
+        //self.barList.removeAll();
+        self.barList([]);
+
+        for(i = l - 1; i >= 0; i--) {
+            if(self.bars[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                self.barList.push(self.bars[i]);
+      }
+    }
+    };
 
     self.myMap = ko.observable({
         //google Map obejct will be created by the custom map bindinghandler
@@ -182,6 +217,8 @@ ko.bindingHandlers.typeSelector = {
 };
 
 var viewModel = new MyViewModel();
+viewModel.query.subscribe(viewModel.search);
+
 $(document).ready(function() {
     ko.applyBindings(viewModel);
 });

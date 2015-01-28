@@ -1,3 +1,5 @@
 jQuery Set Cursor Position function
 http://www.sitepoint.com/jqueryhtml5-input-focus-cursor-positions/
 
+Creating live search functionality with knockout.js
+http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
