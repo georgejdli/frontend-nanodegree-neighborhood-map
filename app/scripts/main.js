@@ -50,16 +50,8 @@ var Bar = function(data, station) {
 var MyViewModel = function() {
     var self = this;
     self.bars = [];
-
-    self.init = function() {
-        //Import beer.js data into viewmodel by creating Bar instances
-        for (var station in beer) {
-            beer[station].forEach(self.createBar);
-    }
-
-        //populate the markers after viewMovel bindings have been applied
-        self.genMarkers(self.bars);
-    };
+    //this observable will hold the filtered list of bars to display
+    self.barList = ko.observableArray();
     
     /** create a Marker object and store it as a property for each bar*/
     self.genMarkers = function(bars) {
@@ -72,14 +64,23 @@ var MyViewModel = function() {
     };
 
     /** create new Bar instance and push into regular array self.bars */
-    self.createBar = function(bar) {
-            self.bars.push(new Bar(bar, station));
+    self.createBar = function(station) {
+            return function (bar) {
+                self.bars.push(new Bar(bar, station));
+            };  
     };
-
-
+    
+    self.init = function() {
+        //Import beer.js data into viewmodel by creating Bar instances
+        for (var station in beer) {
+            beer[station].forEach(self.createBar(station));
+        }
+        self.barList(self.bars);
+        //populate the markers after viewMovel bindings have been applied
+        self.genMarkers(self.bars);
+    };
+    
     /* BEGIN Live search functionality */
-    //this observable will hold the filtered list of bars
-    self.barList = ko.observableArray(self.bars);
     //self.query holds the search term from the filter box on the view
     //a subscription is set up later between self.search and self.query
     self.query = ko.observable('');
@@ -91,7 +92,7 @@ var MyViewModel = function() {
         //clear barList by setting the value to an empty array
         self.barList([]);
 
-        for(i = l - 1; i >= 0; i--) {
+        for(i = 0; i < l; i++) {
             if(self.bars[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
                 self.barList.push(self.bars[i]);
             }
