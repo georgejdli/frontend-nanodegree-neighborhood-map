@@ -55,7 +55,7 @@
   </div>
 
   <!-- live search/filter with knockout.js -->
-  <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+  <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query" autocomplete="off">
   <ul data-bind="template: {name:'beer', foreach:barList}"></ul>
   <script type="text/html" id="beer">
     <li>

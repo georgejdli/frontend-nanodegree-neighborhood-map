@@ -43,35 +43,61 @@ var Bar = function(data, station) {
     this.latLng = data.latLng;
     this.placeID = data.placeID;
     this.station = station;
+    this.marker = '';
+    
 };
 
 var MyViewModel = function() {
     var self = this;
-
     self.bars = [];
-    self.barList = ko.observableArray(self.bars);
-    self.createBar = function(bar) {
-            self.bars.push(new Bar(bar, station));
-        };
-    for (var station in beer) {
-        beer[station].forEach(self.createBar);
+
+    self.init = function() {
+        //Import beer.js data into viewmodel by creating Bar instances
+        for (var station in beer) {
+            beer[station].forEach(self.createBar);
     }
 
+        //populate the markers after viewMovel bindings have been applied
+        self.genMarkers(self.bars);
+    };
+    
+    /** create a Marker object and store it as a property for each bar*/
+    self.genMarkers = function(bars) {
+        bars.forEach(function(bar) {
+            bar.marker = new google.maps.Marker({
+                position: bar.latLng,
+                map: self.myMap().googleMap
+            });
+        });
+    };
+
+    /** create new Bar instance and push into regular array self.bars */
+    self.createBar = function(bar) {
+            self.bars.push(new Bar(bar, station));
+    };
+
+
+    /* BEGIN Live search functionality */
+    //this observable will hold the filtered list of bars
+    self.barList = ko.observableArray(self.bars);
+    //self.query holds the search term from the filter box on the view
+    //a subscription is set up later between self.search and self.query
     self.query = ko.observable('');
     self.search = function(value) {
         var i,
             l = self.bars.length;
         //remove all current bars from view
-        //removeAll() seems to empty out the array passed to self.barList as well
-        //self.barList.removeAll();
+        //.removeAll() seems to empty out the array passed to self.barList
+        //clear barList by setting the value to an empty array
         self.barList([]);
 
         for(i = l - 1; i >= 0; i--) {
             if(self.bars[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
                 self.barList.push(self.bars[i]);
-      }
-    }
+            }
+        }
     };
+    /* END Live search functionality */
 
     self.myMap = ko.observable({
         //google Map obejct will be created by the custom map bindinghandler
@@ -98,7 +124,7 @@ var MyViewModel = function() {
         componentRestrictions: {'country': 'us'},
         infowindow: new google.maps.InfoWindow()
     });
-    
+
     //If radio button for BART Stations is selected, then "BART" will be
     // prefilled on the search form to make search for a station a bit easier
     self.mySearch = ko.observable('Enter a search term');
@@ -221,6 +247,8 @@ viewModel.query.subscribe(viewModel.search);
 
 $(document).ready(function() {
     ko.applyBindings(viewModel);
+    //start the app
+    viewModel.init();
 });
 
 /**
@@ -300,3 +328,4 @@ function setCoor() {
 //don't bother with extending the binding context for descedent bindings
 //putting custom controls like search box and type selector inside the map div
 //doesn't work; they don't render on the map canvas correctly
+//It's ok to manually query a dom element to initialize the google Map object
