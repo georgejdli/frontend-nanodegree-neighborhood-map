@@ -58,7 +58,8 @@ var MyViewModel = function() {
         bars.forEach(function(bar) {
             bar.marker = new google.maps.Marker({
                 position: bar.latLng,
-                map: self.myMap().googleMap
+                map: self.myMap().googleMap,
+                title: bar.name
             });
         });
     };
@@ -70,6 +71,16 @@ var MyViewModel = function() {
             };  
     };
     
+    /** Pass a marker object to toggle visibility */
+    //the functions may be superfluous
+/*    self.toggleMarkerVisible = function(marker) {
+        if (marker.getVisible()) {
+            marker.setVisible(false);
+        } else {
+            marker.setVisible(true);
+        }
+    };*/
+
     self.init = function() {
         //Import beer.js data into viewmodel by creating Bar instances
         for (var station in beer) {
@@ -82,21 +93,31 @@ var MyViewModel = function() {
     
     /* BEGIN Live search functionality */
     //self.query holds the search term from the filter box on the view
-    //a subscription is set up later between self.search and self.query
+    //self.search will be subscribed to self.query later
     self.query = ko.observable('');
     self.search = function(value) {
         var i,
             l = self.bars.length;
+
+        //hide the markers currently displayed on the map
+        self.barList().forEach(function(bar) {
+            bar.marker.setVisible(false);
+        });
         //remove all current bars from view
         //.removeAll() seems to empty out the array passed to self.barList
         //clear barList by setting the value to an empty array
         self.barList([]);
 
-        for(i = 0; i < l; i++) {
-            if(self.bars[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                self.barList.push(self.bars[i]);
+        self.bars.forEach(function(bar) {
+            if (bar.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                self.barList.push(bar);
             }
-        }
+        });
+
+        //show the markers for bars currently displayed in list view
+        self.barList().forEach(function(bar) {
+            bar.marker.setVisible(true);
+        });        
     };
     /* END Live search functionality */
 
@@ -296,6 +317,8 @@ function setCoor() {
             if (requests >= SEARCH_LIMIT) {
                 return;
             }
+            //if you are simply adding new properties to each bar object then
+            //change the condition to bar[property]
             if (bar.placeID) {
                 return;
             }
