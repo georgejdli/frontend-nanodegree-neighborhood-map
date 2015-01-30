@@ -45,7 +45,6 @@ var Bar = function(data, station) {
     this.station = station;
     this.contentString = '';
     this.marker = '';
-    this.infoWindow = '';
     
 };
 
@@ -73,13 +72,16 @@ var MyViewModel = function() {
         });
     };
 
+    /** add InfoWindow clickhandler for each bar */
     self.addInfoWindow = function(bars) {
         bars.forEach(function(bar) {
             bar.contentString = '<div>' +
                 '<strong>'+
-                bar.name + '</strong>'+
+                bar.name + '</strong><br>'+
+                '<a href="'+
+                this.url + 
+                '"target="_blank">BeerByBart Page</a>'+
                 '</div>';
-            
             function infoWindowClick(bar) {
                 return function() {
                     self.myMap().infoWindow.close();
