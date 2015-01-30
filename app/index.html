@@ -52,15 +52,18 @@
 </div> -->
 
   <!-- live search/filter with knockout.js -->
-  <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query, liveSearchBox: myMap" autocomplete="off">
-  <!-- <ul data-bind="template: {name:'beer', foreach:barList}"></ul> -->
-  <!-- <script type="text/html" id="beer">
-    <li>
-      <strong data-bind="text: name"></strong> –
-      <span data-bind="text: station"></span>
-      <p data-bind="text: directions"></pn>
-    </li>
-  </script> -->
+  
+  <div id="results" data-bind="liveSearchBox: myMap, click: listHandler">
+    <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query" autocomplete="off">
+    <ul data-bind="template: {name:'beer', foreach:barList}"></ul>
+    <script type="text/html" id="beer">
+      <li>
+        <strong data-bind="text: name"></strong>
+        <p data-bind="text: station"></p>
+        //<p data-bind="text: directions"></pn>
+      </li>
+    </script>
+  </div>
     
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

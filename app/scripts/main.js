@@ -75,22 +75,24 @@ var MyViewModel = function() {
     /** add InfoWindow clickhandler for each bar */
     self.addInfoWindow = function(bars) {
         bars.forEach(function(bar) {
-            bar.contentString = '<div>' +
-                '<strong>'+
-                bar.name + '</strong><br>'+
+            bar.contentString = '<div id="info-content">' +
                 '<a href="'+
-                this.url + 
-                '"target="_blank">BeerByBart Page</a>'+
+                bar.url + 
+                '"target="_blank"><strong>'+
+                bar.name + '</strong></a><br>'+
+                '<p>' + bar.directions + '</p>'+
                 '</div>';
             function infoWindowClick(bar) {
                 return function() {
+                    //display more info in list view?
                     self.myMap().infoWindow.close();
                     self.myMap().infoWindow.setContent(bar.contentString);
-                    self.myMap().infoWindow.open(self.myMap().googleMap, 
+                    self.myMap().infoWindow.open(self.myMap().googleMap,
                                                  bar.marker);
                 };
             }
-            google.maps.event.addListener(bar.marker, 'click', infoWindowClick(bar));
+            google.maps.event.addListener(bar.marker, 'click',
+                                          infoWindowClick(bar));
         });
     };
 
@@ -135,6 +137,10 @@ var MyViewModel = function() {
     };
     /* END Live search functionality */
 
+    self.listHandler = function() {
+
+    };
+
     /* myMap holds the googleMap object and the map options */
     self.myMap = ko.observable({
         //google Map obejct will be created by the custom map bindinghandler
@@ -159,7 +165,9 @@ var MyViewModel = function() {
         
         //restrict searches to within the USA for more relevant results
         componentRestrictions: {'country': 'us'},
-        infoWindow: new google.maps.InfoWindow()
+        infoWindow: new google.maps.InfoWindow({
+            maxWidth: 200
+        })
     });
 
     //If radio button for BART Stations is selected, then "BART" will be
