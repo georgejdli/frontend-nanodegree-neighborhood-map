@@ -102,7 +102,7 @@ var MyViewModel = function() {
         self.barList(self.bars);
         //populate the markers after viewMovel bindings have been applied
         self.createMarkers(self.bars);
-        //self.addInfoWindow(self.bars);
+        self.addInfoWindow(self.bars);
     };
     
     /* BEGIN Live search functionality */
