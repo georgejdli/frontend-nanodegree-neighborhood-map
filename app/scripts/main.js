@@ -43,7 +43,9 @@ var Bar = function(data, station) {
     this.latLng = data.latLng;
     this.placeID = data.placeID;
     this.station = station;
+    this.contentString = '';
     this.marker = '';
+    this.infoWindow = '';
     
 };
 
@@ -52,9 +54,16 @@ var MyViewModel = function() {
     self.bars = [];
     //this observable will hold the filtered list of bars to display
     self.barList = ko.observableArray();
+
+    /** create new Bar instance and push into regular array self.bars */
+    self.createBar = function(station) {
+            return function (bar) {
+                self.bars.push(new Bar(bar, station));
+            };  
+    };
     
     /** create a Marker object and store it as a property for each bar*/
-    self.genMarkers = function(bars) {
+    self.createMarkers = function(bars) {
         bars.forEach(function(bar) {
             bar.marker = new google.maps.Marker({
                 position: bar.latLng,
@@ -64,22 +73,24 @@ var MyViewModel = function() {
         });
     };
 
-    /** create new Bar instance and push into regular array self.bars */
-    self.createBar = function(station) {
-            return function (bar) {
-                self.bars.push(new Bar(bar, station));
-            };  
+    self.addInfoWindow = function(bars) {
+        bars.forEach(function(bar) {
+            bar.contentString = '<div>' +
+                '<strong>'+
+                bar.name + '</strong>'+
+                '</div>';
+            
+            function infoWindowClick(bar) {
+                return function() {
+                    self.myMap().infoWindow.close();
+                    self.myMap().infoWindow.setContent(bar.contentString);
+                    self.myMap().infoWindow.open(self.myMap().googleMap, 
+                                                 bar.marker);
+                };
+            }
+            google.maps.event.addListener(bar.marker, 'click', infoWindowClick(bar));
+        });
     };
-    
-    /** Pass a marker object to toggle visibility */
-    //the functions may be superfluous
-/*    self.toggleMarkerVisible = function(marker) {
-        if (marker.getVisible()) {
-            marker.setVisible(false);
-        } else {
-            marker.setVisible(true);
-        }
-    };*/
 
     self.init = function() {
         //Import beer.js data into viewmodel by creating Bar instances
@@ -88,7 +99,8 @@ var MyViewModel = function() {
         }
         self.barList(self.bars);
         //populate the markers after viewMovel bindings have been applied
-        self.genMarkers(self.bars);
+        self.createMarkers(self.bars);
+        self.addInfoWindow(self.bars);
     };
     
     /* BEGIN Live search functionality */
@@ -121,6 +133,7 @@ var MyViewModel = function() {
     };
     /* END Live search functionality */
 
+    /* myMap holds the googleMap object and the map options */
     self.myMap = ko.observable({
         //google Map obejct will be created by the custom map bindinghandler
         googleMap: '',
@@ -144,7 +157,7 @@ var MyViewModel = function() {
         
         //restrict searches to within the USA for more relevant results
         componentRestrictions: {'country': 'us'},
-        infowindow: new google.maps.InfoWindow()
+        infoWindow: new google.maps.InfoWindow()
     });
 
     //If radio button for BART Stations is selected, then "BART" will be
@@ -216,7 +229,7 @@ ko.bindingHandlers.autocompleteSearchBox = {
         });
 
         google.maps.event.addListener(autocomplete, 'place_changed', function(){
-            mapObj.infowindow.close();
+            mapObj.infoWindow.close();
             marker.setVisible(false);
             var place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -250,8 +263,8 @@ ko.bindingHandlers.autocompleteSearchBox = {
                 ].join(' ');
             }
 
-            mapObj.infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-            mapObj.infowindow.open(mapObj.googleMap, marker);
+            mapObj.infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+            mapObj.infoWindow.open(mapObj.googleMap, marker);
         });
     }
 };
