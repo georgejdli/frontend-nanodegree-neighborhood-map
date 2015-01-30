@@ -44,7 +44,7 @@
   <div id="map-canvas" data-bind="map: myMap"></div>
   
   <!--Google Places Search Box Element-->  
-  <input id="pac-input" class="controls" type="text" placeholder="Enter search here" data-bind="value: appendBART, setCursorPosZero: searchBART, autocompleteSearchBox: myMap">
+  <input id="pac-input" class="controls" type="text" placeholder="Enter search here" data-bind="value: appendBART, setCursorPosZero: searchBART, autocompleteSearchBox: myMap, visible: false">
   
   <div id="type-selector" class="controls" data-bind="typeSelector: myMap">
     <input type="radio" name="type" id="changetype-all" value="false" data-bind="checked: searchBART">
@@ -55,15 +55,15 @@
   </div>
 
   <!-- live search/filter with knockout.js -->
-  <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query" autocomplete="off">
-  <ul data-bind="template: {name:'beer', foreach:barList}"></ul>
-  <script type="text/html" id="beer">
+  <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query, liveSearchBox: myMap" autocomplete="off">
+  <!-- <ul data-bind="template: {name:'beer', foreach:barList}"></ul> -->
+  <!-- <script type="text/html" id="beer">
     <li>
       <strong data-bind="text: name"></strong> –
       <span data-bind="text: station"></span>
       <p data-bind="text: directions"></pn>
     </li>
-  </script>
+  </script> -->
     
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

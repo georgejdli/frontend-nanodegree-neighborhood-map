@@ -102,7 +102,7 @@ var MyViewModel = function() {
         self.barList(self.bars);
         //populate the markers after viewMovel bindings have been applied
         self.createMarkers(self.bars);
-        self.addInfoWindow(self.bars);
+        //self.addInfoWindow(self.bars);
     };
     
     /* BEGIN Live search functionality */
@@ -211,6 +211,14 @@ ko.bindingHandlers.map = {
         mapObj.googleMap = new google.maps.Map(element, mapOptions);
     }
 };
+
+ko.bindingHandlers.liveSearchBox = {
+    init: function(element, valueAccessor, allBindings, bindingContext) {
+        var mapObj = ko.unwrap(valueAccessor());
+        //set position for search box 
+        mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(element);
+    }
+}
 
 ko.bindingHandlers.autocompleteSearchBox = {
     init: function(element, valueAccessor, allBindings, bindingContext) {
