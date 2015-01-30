@@ -5,9 +5,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>frontend-nanodegree-neighborhood-map</title>
-    <style type="text/css">
-      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-    </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEIHUALfyHmm3bPlSIJh63dyv_zdDLh4&libraries=places">
     </script>
@@ -44,15 +41,15 @@
   <div id="map-canvas" data-bind="map: myMap"></div>
   
   <!--Google Places Search Box Element-->  
-  <input id="pac-input" class="controls" type="text" placeholder="Enter search here" data-bind="value: appendBART, setCursorPosZero: searchBART, autocompleteSearchBox: myMap, visible: false">
+<!--   <input id="pac-input" class="controls" type="text" placeholder="Enter search here" data-bind="value: appendBART, setCursorPosZero: searchBART, autocompleteSearchBox: myMap">
+
+<div id="type-selector" class="controls" data-bind="typeSelector: myMap">
+  <input type="radio" name="type" id="changetype-all" value="false" data-bind="checked: searchBART">
+  <label for="changetype-all">All</label>
   
-  <div id="type-selector" class="controls" data-bind="typeSelector: myMap">
-    <input type="radio" name="type" id="changetype-all" value="false" data-bind="checked: searchBART">
-    <label for="changetype-all">All</label>
-    
-    <input type="radio" name="type" id="changetype-address" value="true" data-bind="checked: searchBART">
-    <label for="changetype-address">BART Stations</label>
-  </div>
+  <input type="radio" name="type" id="changetype-address" value="true" data-bind="checked: searchBART">
+  <label for="changetype-address">BART Stations</label>
+</div> -->
 
   <!-- live search/filter with knockout.js -->
   <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query, liveSearchBox: myMap" autocomplete="off">

@@ -92,6 +92,11 @@ $icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 }
 
+html, body, #map-canvas { 
+  height: 100%; 
+  margin: 0; 
+  padding: 0;}
+
 /* Styling for google search box */
 .controls {
   margin-top: 16px;
