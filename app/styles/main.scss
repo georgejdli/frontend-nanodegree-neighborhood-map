@@ -92,7 +92,7 @@ $icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 }
 
-html, body, #map-canvas { 
+html, body, #map-page, #map-canvas { 
   height: 100%; 
   margin: 0; 
   padding: 0;
@@ -151,8 +151,8 @@ html, body, #map-canvas {
   //right: 5px;
   //top: 50%;
   //margin-top: -195px;
-  height: 380px;
-  width: 320px;
+  //height: 380px;
+  //width: 320px;
   //padding: 5px;
   //z-index: 5;
   //border: 1px solid #999;
@@ -178,6 +178,21 @@ li {
 
 li:nth-child(odd) {
   background-color: #fcfcfc;
+}
+
+//jQuery mobile styling for listview
+.ui-li-static.ui-collapsible > .ui-collapsible-heading {
+    margin: 0;
+}
+.ui-li-static.ui-collapsible {
+    padding: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+    border-top-width: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-content {
+    border-bottom-width: 0;
 }
 
 /*END STYLING FOR LIST VIEW */

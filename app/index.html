@@ -39,6 +39,7 @@
     </div> -->
   
   <!-- map binding handler needs to run first since the other custom bindinghandlers are dependent on the google Map object being initialized-->
+  <div data-role="page" id="map-page">
   <div id="map-canvas" data-bind="map: myMap"></div>
   
   <!--Google Places Search Box Element-->  
@@ -56,7 +57,13 @@
   
   <div id="results" data-bind="liveSearchBox: myMap, click: listHandler">
     <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query" autocomplete="off">
-    <ul data-bind="template: {name:'beer', foreach:barList}"></ul>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false">
+        <h3>Results</h3>
+        <ul data-role="listview">
+          <!-- ko template: {name:'beer', foreach:barList, afterRender: refreshListview} -->
+      <!-- /ko -->
+        </ul>
+      </li>
     <script type="text/html" id="beer">
       <li>
         <strong data-bind="text: name"></strong>
@@ -64,15 +71,17 @@
       </li>
     </script>
   </div>
+
+  </div>
         <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/knockout/dist/knockout.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <!-- build:js scripts/plugins.js -->
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
+       <!-- <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
         <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
         <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
         <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
@@ -83,7 +92,7 @@
         <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
         <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
         <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
+        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script> -->
         <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->

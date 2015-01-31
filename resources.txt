@@ -3,3 +3,6 @@ http://www.sitepoint.com/jqueryhtml5-input-focus-cursor-positions/
 
 Creating live search functionality with knockout.js
 http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
+
+Integrating Knockout and jQuery Mobile - Refreshing listView after Knockout has updated the list template
+http://www.scottlogic.com/blog/2012/10/23/integrating-knockout-and-jquerymobile.html

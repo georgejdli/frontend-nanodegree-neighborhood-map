@@ -182,6 +182,13 @@ var MyViewModel = function() {
         }
     });
     self.isSelected = ko.observable(false);
+
+    self.refreshListview = function(element) {
+        var listview = $(element).closest("[data-role='listview']");
+        if (listview.data("mobile-listview")) {
+            listview.listview('refresh');
+        }
+    };
 };
 
 //When searchBART radio button is selected, ' BART' will be added to search box
