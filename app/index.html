@@ -5,6 +5,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>frontend-nanodegree-neighborhood-map</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEIHUALfyHmm3bPlSIJh63dyv_zdDLh4&libraries=places">
     </script>
@@ -21,7 +22,7 @@
     <!-- endbuild -->
 
     <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <!-- <script src="../bower_components/modernizr/modernizr.js"></script> -->
     <!-- endbuild -->
   </head>
   <body>
@@ -60,18 +61,16 @@
       <li>
         <strong data-bind="text: name"></strong>
         <p data-bind="text: station"></p>
-        //<p data-bind="text: directions"></pn>
       </li>
     </script>
   </div>
-    
-    <!-- build:js scripts/vendor.js -->
+        <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/knockout/dist/knockout.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    <!-- <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
         <!-- build:js scripts/plugins.js -->
         <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
         <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
