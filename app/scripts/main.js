@@ -226,7 +226,7 @@ ko.bindingHandlers.liveSearchBox = {
         //set position for search box 
         mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(element);
     }
-}
+};
 
 ko.bindingHandlers.autocompleteSearchBox = {
     init: function(element, valueAccessor, allBindings, bindingContext) {
