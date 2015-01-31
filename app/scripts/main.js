@@ -87,6 +87,8 @@ var MyViewModel = function() {
                     //display more info in list view?
                     self.myMap().infoWindow.close();
                     self.myMap().infoWindow.setContent(bar.contentString);
+                    //hide list view
+                    self.collapse(true);
                     self.myMap().infoWindow.open(self.myMap().googleMap,
                                                  bar.marker);
                 };
@@ -105,6 +107,11 @@ var MyViewModel = function() {
         //populate the markers after viewMovel bindings have been applied
         self.createMarkers(self.bars);
         self.addInfoWindow(self.bars);
+        //listview scroll not working on mobile initially
+        //opening an infoWindow (thus triggering a collapse event) seems
+        //to fix it so using this as a workaround
+        self.myMap().infoWindow.open(self.myMap().googleMap,
+                                     self.bars[41].marker);
     };
     
     /* BEGIN Live search functionality */
@@ -136,7 +143,9 @@ var MyViewModel = function() {
         });        
     };
     /* END Live search functionality */
-
+    /* TODO: write event handler for all list items so that when clicked on
+     * the corresponding info window if opened
+     */
     self.listHandler = function() {
 
     };
@@ -189,6 +198,8 @@ var MyViewModel = function() {
             listview.listview('refresh');
         }
     };
+
+    self.collapse = ko.observable(true);
 };
 
 //When searchBART radio button is selected, ' BART' will be added to search box
@@ -196,7 +207,7 @@ var MyViewModel = function() {
 //of the input box so a user can easily type the station name before ' BART'
 ko.bindingHandlers.setCursorPosZero = {
     update: function(element, valueAccessor, allBindings, bindingContext) {
-        if( ko.unwrap(valueAccessor()) ) {
+        if ( ko.unwrap(valueAccessor()) ) {
             $(element).focus().setCursorPosition(0);
         }
     }
@@ -232,6 +243,29 @@ ko.bindingHandlers.liveSearchBox = {
         var mapObj = ko.unwrap(valueAccessor());
         //set position for search box 
         mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(element);
+    }
+};
+
+ko.bindingHandlers.collapse = {
+    init: function(element, valueAccessor, allBindings, bindingContext) {
+        var collapse = valueAccessor();
+        $(element).collapsible({
+            collapse: function( event, ui ) {
+                collapse(true);
+            },
+            expand: function( event, ui ) {
+                collapse(false);
+            }
+        });
+    },
+    update: function(element, valueAccessor, allBindings, bindingContext) {
+        var collapse = ko.unwrap(valueAccessor());
+        if (collapse === true) {
+            //viewModel.refreshListview(element);
+            $(element).collapsible('collapse');
+        } else if (collapse === false) {
+            $(element).collapsible('expand');
+        }
     }
 };
 
