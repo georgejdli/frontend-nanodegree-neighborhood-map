@@ -1,7 +1,7 @@
-$icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/';
+/* $icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/'; */
 
 // bower:scss
-@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+/* @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss"; */
 // endbower
 
 .browsehappy {
@@ -99,7 +99,7 @@ html, body, #map-page, #map-canvas {
 }
 
 /* Styling for google search box */
-.controls {
+/*.controls {
   margin-top: 16px;
   border: 1px solid transparent;
   border-radius: 2px 0 0 2px;
@@ -123,9 +123,9 @@ html, body, #map-page, #map-canvas {
 #pac-input:focus {
   border-color: #4d90fe;
   margin-left: -1px;
-  padding-left: 14px;  /* Regular padding-left + 1. */
+  padding-left: 14px;  Regular padding-left + 1.
   width: 401px;
-}
+} */
 
 .pac-container {
   font-family: Roboto;
@@ -146,7 +146,7 @@ html, body, #map-page, #map-canvas {
 
 /*BEGIN STYLING FOR LIST VIEW */
 #results {
-  font-family: Arial, Helvetica, sans-serif;
+  //font-family: Arial, Helvetica, sans-serif;
   //position: absolute;
   //right: 5px;
   //top: 50%;
@@ -171,8 +171,8 @@ ul {
 li {
   background-color: #f1f1f1;
   padding: 10px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  //text-overflow: ellipsis;
+  //white-space: nowrap;
   overflow: hidden;
 }
 
