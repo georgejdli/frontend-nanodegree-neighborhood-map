@@ -113,7 +113,8 @@ var MyViewModel = function() {
         self.barList([]);
 
         self.bars.forEach(function(bar) {
-            if (bar.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+            if ((bar.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)||
+                (bar.station.toLowerCase().indexOf(value.toLowerCase()) >= 0)){
                 self.barList.push(bar);
             }
         });
