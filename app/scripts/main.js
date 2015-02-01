@@ -17,25 +17,6 @@ define(['jquery', 'knockout'], function($, ko) {
     Model: Applicatiohn's stored data. Make AJAX calls to some server side code read and write this stored model data.
  */
 
-/** 
- * Add SET CURSOR POSITION using jQuery 
- * source: http://www.sitepoint.com/jqueryhtml5-input-focus-cursor-positions/
- */
-$.fn.setCursorPosition = function(pos) {
-  this.each(function(index, elem) {
-    if (elem.setSelectionRange) {
-      elem.setSelectionRange(pos, pos);
-    } else if (elem.createTextRange) {
-      var range = elem.createTextRange();
-      range.collapse(true);
-      range.moveEnd('character', pos);
-      range.moveStart('character', pos);
-      range.select();
-    }
-  });
-  return this;
-};
-
 var Bar = function(data, station) {
     this.name = data.name;
     this.url = data.url;
