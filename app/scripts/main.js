@@ -165,17 +165,6 @@ var MyViewModel = function() {
         })
     });
 
-    //If radio button for BART Stations is selected, then "BART" will be
-    // prefilled on the search form to make search for a station a bit easier
-    self.mySearch = ko.observable('Enter a search term');
-    self.searchBART = ko.observable("false");
-    self.appendBART = ko.computed(function() {
-        if(self.searchBART() === "true") {  
-            return ' BART';
-        } else {
-            return '';
-        }
-    });
     self.isSelected = ko.observable(false);
 
     self.refreshListview = function(element) {
