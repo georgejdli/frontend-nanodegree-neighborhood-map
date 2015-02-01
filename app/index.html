@@ -42,17 +42,6 @@
   <div data-role="page" id="map-page">
   <div id="map-canvas" data-bind="map: myMap"></div>
   
-  <!--Google Places Search Box Element-->  
-<!--   <input id="pac-input" class="controls" type="text" placeholder="Enter search here" data-bind="value: appendBART, setCursorPosZero: searchBART, autocompleteSearchBox: myMap">
-
-<div id="type-selector" class="controls" data-bind="typeSelector: myMap">
-  <input type="radio" name="type" id="changetype-all" value="false" data-bind="checked: searchBART">
-  <label for="changetype-all">All</label>
-  
-  <input type="radio" name="type" id="changetype-address" value="true" data-bind="checked: searchBART">
-  <label for="changetype-address">BART Stations</label>
-</div> -->
-
   <!-- live search/filter with knockout.js -->
   <!-- TODO add links to each bar item so the right arrow icon shows up-->
   <div id="results" data-bind="liveSearchBox: myMap, click: listHandler">
