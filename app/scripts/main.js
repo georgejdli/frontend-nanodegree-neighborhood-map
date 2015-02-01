@@ -69,7 +69,7 @@ var MyViewModel = function() {
                     self.myMap().infoWindow.close();
                     self.myMap().infoWindow.setContent(bar.contentString);
                     //hide list view
-                    self.collapse(true);
+                    self.isCollapsed(true);
                     self.myMap().infoWindow.open(self.myMap().googleMap,
                                                  bar.marker);
                 };
@@ -89,7 +89,7 @@ var MyViewModel = function() {
         self.createMarkers(self.bars);
         self.addInfoWindow(self.bars);
         //listview scroll not working on mobile initially
-        //triggering a marker click seems to fix it (thus open infowindow)
+        //triggering a marker click seems to fix it (thus opening infowindow)
         //so using this as a workaround
         //not quite sure why this is the case though
         new google.maps.event.trigger( self.bars[41].marker, 'click' );
@@ -131,7 +131,7 @@ var MyViewModel = function() {
         self.myMap().infoWindow.close();
         self.myMap().infoWindow.setContent(this.contentString);
         //hide list view
-        self.collapse(true);
+        self.isCollapsed(true);
         self.myMap().infoWindow.open(self.myMap().googleMap,
                                      this.marker);
     };
@@ -185,7 +185,7 @@ var MyViewModel = function() {
         }
     };
 
-    self.collapse = ko.observable(true);
+    self.isCollapsed = ko.observable(true);
 };
 
 //Define custom binding for google Maps using the below resources
@@ -223,22 +223,22 @@ ko.bindingHandlers.liveSearchBox = {
 
 ko.bindingHandlers.collapse = {
     init: function(element, valueAccessor, allBindings, bindingContext) {
-        var collapse = valueAccessor();
+        var isCollapsed = valueAccessor();
         $(element).collapsible({
             collapse: function( event, ui ) {
-                collapse(true);
+                isCollapsed(true);
             },
             expand: function( event, ui ) {
-                collapse(false);
+                isCollapsed(false);
             }
         });
     },
     update: function(element, valueAccessor, allBindings, bindingContext) {
-        var collapse = ko.unwrap(valueAccessor());
-        if (collapse === true) {
+        var isCollapsed = ko.unwrap(valueAccessor());
+        if (isCollapsed === true) {
             //viewModel.refreshListview(element);
             $(element).collapsible('collapse');
-        } else if (collapse === false) {
+        } else if (isCollapsed === false) {
             $(element).collapsible('expand');
         }
     }

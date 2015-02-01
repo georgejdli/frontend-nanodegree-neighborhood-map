@@ -46,7 +46,7 @@
   <!-- TODO add links to each bar item so the right arrow icon shows up-->
   <div id="results" data-bind="liveSearchBox: myMap">
     <input id="inset-autocomplete-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query" autocomplete="off">
-    <div data-role="collapsible" data-iconpos="right" data-inset="false" data-bind="collapse: collapse" id="collapse1">
+    <div data-role="collapsible" data-iconpos="right" data-inset="false" data-bind="collapse: isCollapsed" id="collapse1">
       <h3>Results</h3>
       <ul data-role="listview">
         <!-- ko template: {name:'beer', foreach:barList, afterRender: refreshListview} -->
