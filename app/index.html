@@ -44,7 +44,7 @@
   
   <!-- live search/filter with knockout.js -->
   <!-- TODO add links to each bar item so the right arrow icon shows up-->
-  <div id="results" data-bind="liveSearchBox: myMap, click: listHandler">
+  <div id="results" data-bind="liveSearchBox: myMap">
     <input id="inset-autocomplete-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query" autocomplete="off">
     <div data-role="collapsible" data-iconpos="right" data-inset="false" data-bind="collapse: collapse" id="collapse1">
       <h3>Results</h3>
@@ -55,8 +55,10 @@
     </div>
     <script type="text/html" id="beer">
       <li>
-        <strong data-bind="text: name"></strong>
-        <p data-bind="text: station"></p>
+        <a href="#" data-bind="click: $root.listHandler">
+          <strong data-bind="text: name"></strong>
+          <p data-bind="text: station"></p>
+        </a>
       </li>
     </script>
   </div>

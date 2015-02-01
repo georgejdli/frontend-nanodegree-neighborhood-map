@@ -93,8 +93,8 @@ var MyViewModel = function() {
                                                  bar.marker);
                 };
             }
-            google.maps.event.addListener(bar.marker, 'click',
-                                          infoWindowClick(bar));
+            google.maps.event.addListener(bar.marker,
+                                'click', infoWindowClick(bar));
         });
     };
 
@@ -108,10 +108,10 @@ var MyViewModel = function() {
         self.createMarkers(self.bars);
         self.addInfoWindow(self.bars);
         //listview scroll not working on mobile initially
-        //opening an infoWindow (thus triggering a collapse event) seems
-        //to fix it so using this as a workaround
-        self.myMap().infoWindow.open(self.myMap().googleMap,
-                                     self.bars[41].marker);
+        //triggering a marker click seems to fix it (thus open infowindow)
+        //so using this as a workaround
+        //not quite sure why this is the case though
+        new google.maps.event.trigger( self.bars[41].marker, 'click' );
     };
     
     /* BEGIN Live search functionality */
@@ -147,7 +147,12 @@ var MyViewModel = function() {
      * the corresponding info window if opened
      */
     self.listHandler = function() {
-
+        self.myMap().infoWindow.close();
+        self.myMap().infoWindow.setContent(this.contentString);
+        //hide list view
+        self.collapse(true);
+        self.myMap().infoWindow.open(self.myMap().googleMap,
+                                     this.marker);
     };
 
     /* myMap holds the googleMap object and the map options */
