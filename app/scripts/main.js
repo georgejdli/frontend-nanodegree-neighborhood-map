@@ -207,17 +207,6 @@ var MyViewModel = function() {
     self.collapse = ko.observable(true);
 };
 
-//When searchBART radio button is selected, ' BART' will be added to search box
-//This custom binding handler will place the caret at the starting position
-//of the input box so a user can easily type the station name before ' BART'
-ko.bindingHandlers.setCursorPosZero = {
-    update: function(element, valueAccessor, allBindings, bindingContext) {
-        if ( ko.unwrap(valueAccessor()) ) {
-            $(element).focus().setCursorPosition(0);
-        }
-    }
-};
-
 //Define custom binding for google Maps using the below resources
 //http://stackoverflow.com/questions/12722925/google-maps-and-knockoutjshtml
 //http://jsfiddle.net/schmidlop/5eTRV/10/
