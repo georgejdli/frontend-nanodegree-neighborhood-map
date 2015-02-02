@@ -113,7 +113,7 @@ html, body, #map-page, #map-canvas {
 #pac-input {
   background-color: #fff;
   padding: 0 11px 0 13px;
-  width: 320px;
+  width: 100%;
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;
@@ -141,6 +141,16 @@ html, body, #map-page, #map-canvas {
   font-family: Roboto;
   font-size: 13px;
   font-weight: 300;
+}
+.clear-holder{
+    position:relative;
+    float:left;  
+}
+.clear-helper{
+    position:absolute;
+    right:4px;
+    font-size:10pt;
+    cursor: pointer;
 }
 /* END STYLING FOR GOOGLE SEARCH BOX */
 

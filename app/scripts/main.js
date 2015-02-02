@@ -92,7 +92,7 @@ var MyViewModel = function() {
         //triggering a marker click seems to fix it (thus opening infowindow)
         //so using this as a workaround
         //not quite sure why this is the case though
-        new google.maps.event.trigger( self.bars[41].marker, 'click' );
+        //new google.maps.event.trigger( self.bars[41].marker, 'click' );
     };
     
     /* BEGIN Live search functionality */
@@ -126,8 +126,9 @@ var MyViewModel = function() {
         }
 
         function addToCache() {
-            if (val.length > 1) {
-                cache = self.searchCache[val.slice(0, val.length - 1)].filter(filterByName);
+            var priorResults = self.searchCache[val.slice(0, val.length - 1)];
+            if (priorResults) {
+                cache = priorResults.filter(filterByName);
             } else {
                 cache = self.bars.filter(filterByName);
             }
@@ -175,6 +176,7 @@ var MyViewModel = function() {
         zoom: ko.observable(13),
         mapTypeID: ko.observable('roadmap'),
         streetViewControl: false,
+        mapTypeControl: false,
         panControlOptions: {
             position: google.maps.ControlPosition.LEFT_BOTTOM
         },
@@ -217,6 +219,7 @@ ko.bindingHandlers.map = {
             zoom: zoom,
             mapTypeID: mapTypeID,
             streetViewControl: streetViewControl,
+            mapTypeControl: ko.unwrap(mapObj.mapTypeControl),
             panControlOptions: ko.unwrap(mapObj.panControlOptions),
             zoomControlOptions: ko.unwrap(mapObj.zoomControlOptions)
         };
@@ -231,6 +234,17 @@ ko.bindingHandlers.liveSearchBox = {
         var mapObj = ko.unwrap(valueAccessor());
         //set position for search box 
         mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(element);
+    }
+};
+
+ko.bindingHandlers.clearable = {
+    init: function(element, valueAccessor, allBindings, bindingContext) {
+        $(element).wrap('<div class="clear-holder" />');
+        var helper = $('<span class="clear-helper">&#xd7;</span>');
+        $(element).parent().append(helper);
+        helper.click(function(){
+            $(element).val("");
+        });
     }
 };
 
