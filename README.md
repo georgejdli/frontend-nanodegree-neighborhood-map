@@ -12,11 +12,17 @@ Scroll through the list of establishments and click on any entry to show the loc
 ###Search functionality
 	-Searches the venue name and the associated BART station fields
 	-Improved performance by caching results
-		-For example if the word "Montgomery" is input into the search bar one letter at at time (no clipboard events involved):
-			-The results for "M" are stored, let's say 26 out of 72 are returned
-			-The search for "Mo" starts with cached results for "M". So instead of searching all 72 items again it now only has to search 26 items for "Mo"
+		-For example if the word "Montgomery" is input into the search bar one
+		 letter at at time (no clipboard events involved):
+			-The results for "M" are stored, let's say 26 out of 72 are 
+			returned
+			-The search for "Mo" starts with cached results for "M". So 
+			instead of searching all 72 items again it now only has to search
+			26 items for "Mo"
 			-and so forth
-		-If the user decides to enter "Montgomery" again the search function will return the cached results instead of performing another search
+		-If the user decides to enter "Montgomery" again the search function 
+		will return the cached results instead of performing another search
 		-Possible issues: 
 			-There is no mechanism in the app to clear the cache
-			-The search cache may take up too much memory is too many searches are performed
+			-The search cache may take up too much memory is too many searches
+			 are performed
