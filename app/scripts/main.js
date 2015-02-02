@@ -101,8 +101,11 @@ var MyViewModel = function() {
     self.query = ko.observable('');
     self.search = function(value) {
         var i,
-            l = self.bars.length;
+            l = self.bars.length,
+            val = value.toLowerCase(),
+            results = [];
 
+        self.myMap().infoWindow.close();
         //hide the markers currently displayed on the map
         self.barList().forEach(function(bar) {
             bar.marker.setVisible(false);
@@ -112,17 +115,17 @@ var MyViewModel = function() {
         //clear barList by setting the value to an empty array
         self.barList([]);
 
-        self.bars.forEach(function(bar) {
-            if ((bar.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)||
-                (bar.station.toLowerCase().indexOf(value.toLowerCase()) >= 0)){
-                self.barList.push(bar);
+        for (i = 0; i < l; i++) {
+            if ((self.bars[i].name.toLowerCase().indexOf(val) >= 0)||
+                (self.bars[i].station.toLowerCase().indexOf(val) >= 0)){
+                results.push(self.bars[i]);
             }
-        });
-
+        }
+        self.barList(results);
         //show the markers for bars currently displayed in list view
         self.barList().forEach(function(bar) {
             bar.marker.setVisible(true);
-        });        
+        });     
     };
     /* END Live search functionality */
     /* TODO: write event handler for all list items so that when clicked on
