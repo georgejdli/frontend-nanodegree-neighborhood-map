@@ -99,7 +99,7 @@ html, body, #map-page, #map-canvas {
 }
 
 /* Styling for google search box */
-/*.controls {
+.controls {
   margin-top: 16px;
   border: 1px solid transparent;
   border-radius: 2px 0 0 2px;
@@ -123,9 +123,9 @@ html, body, #map-page, #map-canvas {
 #pac-input:focus {
   border-color: #4d90fe;
   margin-left: -1px;
-  padding-left: 14px;  Regular padding-left + 1.
-  width: 401px;
-} */
+  padding-left: 14px;  
+  //width: 401px;
+}
 
 .pac-container {
   font-family: Roboto;
@@ -146,17 +146,17 @@ html, body, #map-page, #map-canvas {
 
 /*BEGIN STYLING FOR LIST VIEW */
 #results {
-  //font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   //position: absolute;
   //right: 5px;
   //top: 50%;
   //margin-top: -195px;
-  //height: 380px;
-  //width: 320px;
+  height: 16px;
+  width: 200px;
   //padding: 5px;
   //z-index: 5;
   //border: 1px solid #999;
-  //background: #fff;
+  background-color: #f1f1f1;
 }
 
 ul {
@@ -164,7 +164,7 @@ ul {
   padding: 0;
   margin: 0;
   height: 321px;
-  //width: 200px;
+  width: 200px;
   overflow-y: scroll;
 }
 
@@ -174,25 +174,11 @@ li {
   //text-overflow: ellipsis;
   //white-space: nowrap;
   overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
 li:nth-child(odd) {
   background-color: #fcfcfc;
-}
-
-//jQuery mobile styling for listview
-.ui-li-static.ui-collapsible > .ui-collapsible-heading {
-    margin: 0;
-}
-.ui-li-static.ui-collapsible {
-    padding: 0;
-}
-.ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
-    border-top-width: 0;
-}
-.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
-.ui-li-static.ui-collapsible > .ui-collapsible-content {
-    border-bottom-width: 0;
 }
 
 /*END STYLING FOR LIST VIEW */
