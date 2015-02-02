@@ -235,10 +235,10 @@ var beer = {
       "url": "http://beerbybart.com/why/sunol-ridge-walnut-creek/",
       "directions": "Exit the BART fare gates and turn left. Walk down a long row of bus stops, then down the stairs to corner of Ygnatio Valley Road and North California Road. Cross Ygnacio Valley and walk down a slight hill on North California. Turn left at the first light onto Lacassie Ave. Walk one block, and turn right onto to Locust Street. Walk down Locust across Bonanza to Cypress and find Sunol Ridge on the left.",
       "latLng": {
-        "lat": 37.619933,
-        "lng": -121.92245830000002
+        "lat": 37.89886,
+        "lng": -122.06174399999998
       },
-      "placeID": "ChIJ0Ueo4grqj4AR8SXRyvXknPI"
+      "placeID": "ChIJ2eqckOphhYARVr1Y9AnhnM8"
     },
     {
       "name": "Pyramid",

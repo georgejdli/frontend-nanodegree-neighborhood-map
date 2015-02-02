@@ -69,7 +69,7 @@ var MyViewModel = function() {
                     self.myMap().infoWindow.close();
                     self.myMap().infoWindow.setContent(bar.contentString);
                     //hide list view
-                    self.isCollapsed(true);
+                    self.showList(false);
                     self.myMap().infoWindow.open(self.myMap().googleMap,
                                                  bar.marker);
                 };
@@ -160,7 +160,7 @@ var MyViewModel = function() {
         self.myMap().infoWindow.close();
         self.myMap().infoWindow.setContent(this.contentString);
         //hide list view
-        self.isCollapsed(true);
+        self.showList(false);
         self.myMap().infoWindow.open(self.myMap().googleMap,
                                      this.marker);
     };
@@ -195,15 +195,10 @@ var MyViewModel = function() {
     });
 
     self.isSelected = ko.observable(false);
-
-    self.refreshListview = function(element) {
-        var listview = $(element).closest("[data-role='listview']");
-        if (listview.data("mobile-listview")) {
-            listview.listview('refresh');
-        }
+    self.showList = ko.observable(true);
+    self.toggleListVis  = function() {
+        self.showList(!self.showList());
     };
-
-    self.isCollapsed = ko.observable(true);
 };
 
 //Define custom binding for google Maps using the below resources
@@ -239,29 +234,6 @@ ko.bindingHandlers.liveSearchBox = {
     }
 };
 
-ko.bindingHandlers.collapse = {
-    init: function(element, valueAccessor, allBindings, bindingContext) {
-        var isCollapsed = valueAccessor();
-        $(element).collapsible({
-            collapse: function( event, ui ) {
-                isCollapsed(true);
-            },
-            expand: function( event, ui ) {
-                isCollapsed(false);
-            }
-        });
-    },
-    update: function(element, valueAccessor, allBindings, bindingContext) {
-        var isCollapsed = ko.unwrap(valueAccessor());
-        if (isCollapsed === true) {
-            //viewModel.refreshListview(element);
-            $(element).collapsible('collapse');
-        } else if (isCollapsed === false) {
-            $(element).collapsible('expand');
-        }
-    }
-};
-
 var viewModel = new MyViewModel();
 viewModel.query.subscribe(viewModel.search);
 
@@ -282,6 +254,7 @@ $(document).ready(function() {
  * @return {object} Return the number of search requests remaining to run
  */
 //bug: Lucky 13 returns some location in Slovakia as the only result
+//bug: Sunol Ridge Returns some location outside Pleasanton
 
 var numBars = 0;
 var success = 0;
@@ -324,7 +297,11 @@ function setCoor() {
             //Bug in google textSearch, this is a workaround
             if (bar.name === 'Lucky 13') {
                 name = 'Lucky13';
-            } else {
+            } else if (bar.name === 'Sunol Ridge'){
+                //another workaround to get the right location
+                name = 'Sunol Ridge Restaurant';
+            }
+            else {
                 name = bar.name;
             }
             var request = {
