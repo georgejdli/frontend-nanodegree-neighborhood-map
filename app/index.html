@@ -7,7 +7,7 @@
     <title>frontend-nanodegree-neighborhood-map</title>
 
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEIHUALfyHmm3bPlSIJh63dyv_zdDLh4&libraries=places">
+      src="https://maps.googleapis.com/maps/api/js?libraries=places">
     </script>
     
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -45,15 +45,15 @@
   <!-- live search/filter with knockout.js -->
   <!-- TODO add links to each bar item so the right arrow icon shows up-->
   <div data-bind="liveSearchBox: myMap">
-    <input id="pac-input" class="controls" type="search" placeholder="Search/Filter list" data-bind="textInput: query" autocomplete="off">
+    <input id="pac-input" class="controls" type="search" name="q" placeholder="name or BART station" data-bind="textInput: query" autocomplete="off">
     <div data-bind="" id="collapse1">
       <div id="results" data-bind="click:toggleListVis">
         <h3>Results</h3>
       </div>
-      <ul data-bind="visible: showList">
-        <!-- ko template: {name:'beer', foreach:barList} -->
-    <!-- /ko -->
-      </ul>
+      <div>
+        <ul data-bind="visible: showList, template: {name:'beer', foreach:barList}">
+        </ul>
+      </div>
     </div>
     <script type="text/html" id="beer">
       <li data-bind="click: $root.listHandler">
