@@ -99,8 +99,9 @@ var MyViewModel = function() {
     //self.query holds the search term from the filter box on the view
     //self.search will be subscribed to self.query later
     self.query = ko.observable('');
+    self.searchCache = {};
     self.search = function(value) {
-        var i,
+        var i, 
             l = self.bars.length,
             val = value.toLowerCase(),
             results = [];
@@ -115,13 +116,37 @@ var MyViewModel = function() {
         //clear barList by setting the value to an empty array
         self.barList([]);
 
-        for (i = 0; i < l; i++) {
-            if ((self.bars[i].name.toLowerCase().indexOf(val) >= 0)||
-                (self.bars[i].station.toLowerCase().indexOf(val) >= 0)){
-                results.push(self.bars[i]);
+
+        var cache = [];
+        function filterByName(bar) {
+            if ((bar.name.toLowerCase().indexOf(val) >= 0)||
+            (bar.station.toLowerCase().indexOf(val) >= 0)){
+            return bar;
             }
         }
-        self.barList(results);
+
+        function addToCache() {
+            if (val.length > 1) {
+                cache = self.searchCache[val.slice(0, val.length - 1)].filter(filterByName);
+            } else {
+                cache = self.bars.filter(filterByName);
+            }
+            self.searchCache[val] = cache;
+            self.barList(cache);
+        }
+
+        if (self.searchCache[val]) {
+            self.barList(self.searchCache[val]);
+        } else {
+            addToCache();
+        }
+        
+        /*for (i = 0; i < l; i++) {
+                if ((self.bars[i].name.toLowerCase().indexOf(val) >= 0)||
+                (self.bars[i].station.toLowerCase().indexOf(val) >= 0)){
+                cache.push(self.bars[i]);
+                }
+            }*/
         //show the markers for bars currently displayed in list view
         self.barList().forEach(function(bar) {
             bar.marker.setVisible(true);
