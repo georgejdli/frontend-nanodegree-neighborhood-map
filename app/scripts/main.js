@@ -100,12 +100,11 @@ var MyViewModel = function() {
     //self.search will be subscribed to self.query later
     self.query = ko.observable('');
     self.searchCache = {};
+    //keep track of the number of searches performed
+    self.searchCacheCount = 0;
     self.search = function(value) {
-        var i, 
-            l = self.bars.length,
-            val = value.toLowerCase(),
-            results = [];
-
+        var val = value.toLowerCase();        
+        self.searchCacheCount++;
         self.myMap().infoWindow.close();
         //hide the markers currently displayed on the map
         self.barList().forEach(function(bar) {
@@ -115,7 +114,6 @@ var MyViewModel = function() {
         //.removeAll() seems to empty out the array passed to self.barList
         //clear barList by setting the value to an empty array
         self.barList([]);
-
 
         var cache = [];
         function filterByName(bar) {
@@ -142,16 +140,15 @@ var MyViewModel = function() {
             addToCache();
         }
         
-        /*for (i = 0; i < l; i++) {
-                if ((self.bars[i].name.toLowerCase().indexOf(val) >= 0)||
-                (self.bars[i].station.toLowerCase().indexOf(val) >= 0)){
-                cache.push(self.bars[i]);
-                }
-            }*/
         //show the markers for bars currently displayed in list view
         self.barList().forEach(function(bar) {
             bar.marker.setVisible(true);
-        });     
+        });
+
+        //remove references to search results to prevent potential memory leaks
+        if (self.searchCacheCount > 200) {
+            self.searchCacheCount = {};
+        }     
     };
     /* END Live search functionality */
     /* TODO: write event handler for all list items so that when clicked on
