@@ -1,5 +1,5 @@
 Creating live search functionality with knockout.js
 http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
 
-Integrating Knockout and jQuery Mobile - Refreshing listView after Knockout has updated the list template
-http://www.scottlogic.com/blog/2012/10/23/integrating-knockout-and-jquerymobile.html#comment-1202166264
+Improving search performance algorithm
+http://stackoverflow.com/a/13565974
