@@ -24,21 +24,22 @@ var Bar = function(data, station) {
     this.latLng = data.latLng;
     this.placeID = data.placeID;
     this.station = station;
-    this.contentString = '';
+    this.contentString = ko.observable('');
+    this.fourSquareString = ko.observable('');
     this.marker = '';
     
 };
 
 var MyViewModel = function() {
     var self = this;
-    self.bars = [];
+    self.bars = ko.observableArray([]);
     //this observable will hold the filtered list of bars to display
     self.barList = ko.observableArray();
 
     /** create new Bar instance and push into regular array self.bars */
     self.createBar = function(station) {
             return function (bar) {
-                self.bars.push(new Bar(bar, station));
+                self.bars().push(new Bar(bar, station));
             };  
     };
     
@@ -53,25 +54,77 @@ var MyViewModel = function() {
         });
     };
 
+    self.getFourSquareInfo = function(bar) {
+        //search for the venue
+        var search = "https://api.foursquare.com/v2/venues/search?";
+        var latLng = "ll=" + bar.latLng.lat + "," + bar.latLng.lng;
+        var radius = "&radius=50";
+        var query = "&query=" + bar.name;
+        var limit = "&limit=1";
+        var intent = "&intent=browse";
+        var client = "&client_id=DBE2OM01EX5TA1G35UFY54KCTCODNUZK5IYX1YBJN01DPDQJ&client_secret=GXDUOK5LQGMZ41TOBFF1XC4GDULDZIN1CCOC3ZZUJ2JQQ1MW&v=20140806&m=foursquare";
+        var url = search + latLng + radius + query + limit + intent + client;
+        console.log(url);
+        $.getJSON(url, function(data) {
+            console.log(data);
+            console.log(data.response.venues.length);
+            if (data.response.venues.length > 0) {
+                var venue = data.response.venues[0];
+                bar.address = venue.location.formattedAddress.join() || "";
+                bar.categories = venue.categories[0].name || "";
+                bar.checkinsCount = venue.stats.checkinsCount || "";
+                bar.fourSquareString(
+                    '<p>' + bar.address + '</p>'
+                );
+                //update contentString
+                bar.contentString( '<div id="info-content">' +
+                    '<a href="'+
+                    bar.url + 
+                    '"target="_blank"><strong>'+
+                    bar.name + '</strong></a><br>'+
+                    bar.fourSquareString()+
+                    '<p>' + bar.station + '</p>'+
+                    '<p>' + bar.directions + '</p>'+
+                    '</div>'
+                );
+            }
+            
+        }).fail(function() {
+            console.log("Could not load data from foursquare");
+        });
+
+    };
+
     /** add InfoWindow clickhandler for each bar */
     self.addInfoWindow = function(bars) {
         bars.forEach(function(bar) {
-            bar.contentString = '<div id="info-content">' +
+            bar.contentString( '<div id="info-content">' +
                 '<a href="'+
                 bar.url + 
                 '"target="_blank"><strong>'+
                 bar.name + '</strong></a><br>'+
+                bar.fourSquareString()+
+                '<p>' + bar.station + '</p>'+
                 '<p>' + bar.directions + '</p>'+
-                '</div>';
+                '</div>'
+                );
             function infoWindowClick(bar) {
                 return function() {
+                    //only retrieve Foursquare data if it doesn't exist
+                    if(!bar.fourSquareString()) {
+                        self.getFourSquareInfo(bar);
+                    }
                     //display more info in list view?
-                    self.myMap().infoWindow.close();
-                    self.myMap().infoWindow.setContent(bar.contentString);
+                    self.myMap().infoWindow().close();
+                    self.myMap().infoWindow().setContent(bar.contentString());
                     //hide list view
                     self.showList(false);
-                    self.myMap().infoWindow.open(self.myMap().googleMap,
+                    self.myMap().infoWindow().open(self.myMap().googleMap,
                                                  bar.marker);
+                    //contentString isn't updating when fourSquareString changes
+                    bar.contentString.subscribe(function() {
+                        self.myMap().infoWindow().setContent(bar.contentString());
+                    });
                 };
             }
             google.maps.event.addListener(bar.marker,
@@ -84,10 +137,10 @@ var MyViewModel = function() {
         for (var station in beer) {
             beer[station].forEach(self.createBar(station));
         }
-        self.barList(self.bars);
+        self.barList(self.bars());
         //populate the markers after viewMovel bindings have been applied
-        self.createMarkers(self.bars);
-        self.addInfoWindow(self.bars);
+        self.createMarkers(self.bars());
+        self.addInfoWindow(self.bars());
         //listview scroll not working on mobile initially
         //triggering a marker click seems to fix it (thus opening infowindow)
         //so using this as a workaround
@@ -105,7 +158,7 @@ var MyViewModel = function() {
     self.search = function(value) {
         var val = value.toLowerCase();        
         self.searchCacheCount++;
-        self.myMap().infoWindow.close();
+        self.myMap().infoWindow().close();
         //hide the markers currently displayed on the map
         self.barList().forEach(function(bar) {
             bar.marker.setVisible(false);
@@ -128,7 +181,7 @@ var MyViewModel = function() {
             if (priorResults) {
                 cache = priorResults.filter(filterByName);
             } else {
-                cache = self.bars.filter(filterByName);
+                cache = self.bars().filter(filterByName);
             }
             self.searchCache[val] = cache;
             self.barList(cache);
@@ -150,16 +203,17 @@ var MyViewModel = function() {
             self.searchCacheCount = {};
         }     
     };
+    self.query.subscribe(self.search);
     /* END Live search functionality */
     /* TODO: write event handler for all list items so that when clicked on
      * the corresponding info window if opened
      */
     self.listHandler = function() {
-        self.myMap().infoWindow.close();
-        self.myMap().infoWindow.setContent(this.contentString);
+        self.myMap().infoWindow().close();
+        self.myMap().infoWindow().setContent(this.contentString());
         //hide list view
         self.showList(false);
-        self.myMap().infoWindow.open(self.myMap().googleMap,
+        self.myMap().infoWindow().open(self.myMap().googleMap,
                                      this.marker);
     };
 
@@ -188,9 +242,10 @@ var MyViewModel = function() {
         
         //restrict searches to within the USA for more relevant results
         componentRestrictions: {'country': 'us'},
-        infoWindow: new google.maps.InfoWindow({
-            maxWidth: 200
-        })
+        infoWindow: ko.observable(new google.maps.InfoWindow({
+            maxWidth: 200,
+            zIndex: 20,
+        }))
     });
 
     self.isSelected = ko.observable(false);
@@ -246,7 +301,6 @@ ko.bindingHandlers.clearable = {
 };
 
 var viewModel = new MyViewModel();
-viewModel.query.subscribe(viewModel.search);
 
 $(document).ready(function() {
     ko.applyBindings(viewModel);
