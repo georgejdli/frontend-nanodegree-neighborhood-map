@@ -66,15 +66,15 @@ var MyViewModel = function() {
         var url = search + latLng + radius + query + limit + intent + client;
         console.log(url);
         $.getJSON(url, function(data) {
-            console.log(data);
-            console.log(data.response.venues.length);
             if (data.response.venues.length > 0) {
                 var venue = data.response.venues[0];
                 bar.address = venue.location.formattedAddress.join() || "";
                 bar.categories = venue.categories[0].name || "";
-                bar.checkinsCount = venue.stats.checkinsCount || "";
+                bar.checkinsCount = venue.stats.checkinsCount || "No data";
                 bar.fourSquareString(
-                    '<p>' + bar.address + '</p>'
+                    '<p>' + bar.address + '</p>'+
+                    '<p>' + bar.categories + '</p>'+
+                    '<p>Num. Checkins: ' + bar.checkinsCount + '</p>'
                 );
                 //update contentString
                 bar.contentString( '<div id="info-content">' +
@@ -87,6 +87,7 @@ var MyViewModel = function() {
                     '<p>' + bar.directions + '</p>'+
                     '</div>'
                 );
+                //console.log(data.response.venues[0].categories);
             }
             
         }).fail(function() {
@@ -113,6 +114,10 @@ var MyViewModel = function() {
                     //only retrieve Foursquare data if it doesn't exist
                     if(!bar.fourSquareString()) {
                         self.getFourSquareInfo(bar);
+                        //update current infoWindow if Foursquare request successful
+                        bar.contentString.subscribe(function() {
+                            self.myMap().infoWindow().setContent(bar.contentString());
+                    });
                     }
                     //display more info in list view?
                     self.myMap().infoWindow().close();
@@ -121,10 +126,6 @@ var MyViewModel = function() {
                     self.showList(false);
                     self.myMap().infoWindow().open(self.myMap().googleMap,
                                                  bar.marker);
-                    //contentString isn't updating when fourSquareString changes
-                    bar.contentString.subscribe(function() {
-                        self.myMap().infoWindow().setContent(bar.contentString());
-                    });
                 };
             }
             google.maps.event.addListener(bar.marker,
@@ -141,11 +142,6 @@ var MyViewModel = function() {
         //populate the markers after viewMovel bindings have been applied
         self.createMarkers(self.bars());
         self.addInfoWindow(self.bars());
-        //listview scroll not working on mobile initially
-        //triggering a marker click seems to fix it (thus opening infowindow)
-        //so using this as a workaround
-        //not quite sure why this is the case though
-        //new google.maps.event.trigger( self.bars[41].marker, 'click' );
     };
     
     /* BEGIN Live search functionality */
@@ -205,13 +201,21 @@ var MyViewModel = function() {
     };
     self.query.subscribe(self.search);
     /* END Live search functionality */
-    /* TODO: write event handler for all list items so that when clicked on
-     * the corresponding info window if opened
-     */
+
+    /** Event handler for each list view item */
     self.listHandler = function() {
+        if(!this.fourSquareString()) {
+            self.getFourSquareInfo(this);
+            //pass the current state of "this" to the cb function as "that"
+            this.contentString.subscribe( (function(that) {
+                return function(){
+                    self.myMap().infoWindow().setContent(that.contentString());
+                };
+            }(this)) );
+        }
         self.myMap().infoWindow().close();
         self.myMap().infoWindow().setContent(this.contentString());
-        //hide list view
+        //hide list view so infoWindow isn't blocked
         self.showList(false);
         self.myMap().infoWindow().open(self.myMap().googleMap,
                                      this.marker);
