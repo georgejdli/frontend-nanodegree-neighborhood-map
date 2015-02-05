@@ -33,6 +33,7 @@
     // doing.
     //"es5": true,
     "esnext": true,
+    "loopfunc": true,
 
     // == Environments ====================================================
     //

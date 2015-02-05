@@ -765,4 +765,4 @@ var beer = {
       "placeID": "ChIJdXouGsd5j4ARWvIrJUNxeH0"
     }
   ]
-}
+};
