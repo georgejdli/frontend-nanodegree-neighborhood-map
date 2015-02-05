@@ -611,10 +611,10 @@ var beer = {
       "url": "http://beerbybart.com/why/beach-chalet/",
       "directions": "Civic Center BART, exit BART and enter MUNI Metro underground in the same station.  Take the N-Judah outbound to the end of the line. Walk out to the end of Judah. (Windy isn’t it?) Turn right along the ocean on the Great Highway for about a third of a mile to the Beach Chalet, the only building you’ll see.",
       "latLng": {
-        "lat": 37.762181,
-        "lng": -122.50446199999999
+        "lat": 37.769515,
+        "lng": -122.51021200000002
       },
-      "placeID": "ChIJhT0UdJeHhYARVT7YQX-AGEg"
+      "placeID": "ChIJ1ShzE7mHhYARnIi1rffKeVc"
     }
   ],
   "16th Street Station, S.F.": [

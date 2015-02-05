@@ -66,21 +66,29 @@ var MyViewModel = function() {
         var url = search + latLng + radius + query + limit + intent + client;
         console.log(url);
         $.getJSON(url, function(data) {
+            //if there is a search result extract the data
+            //otherwise do nothing so the UI isn't affected
             if (data.response.venues.length > 0) {
                 var venue = data.response.venues[0];
                 bar.address = venue.location.formattedAddress.join() || "";
                 bar.categories = venue.categories[0].name || "";
-                bar.checkinsCount = venue.stats.checkinsCount || "No data";
+                bar.checkinsCount = venue.stats.checkinsCount || "0";
+                bar.fourSquareURL = "http://foursquare.com/v/" + 
+                                    venue.id + 
+                                    "?ref=DBE2OM01EX5TA1G35UFY54KCTCODNUZK5IYX1YBJN01DPDQJ";
                 bar.fourSquareString(
                     '<p>' + bar.address + '</p>'+
                     '<p>' + bar.categories + '</p>'+
-                    '<p>Num. Checkins: ' + bar.checkinsCount + '</p>'
+                    '<p><a href="' + 
+                    bar.fourSquareURL + 
+                    '" target="_blank">' +
+                    'Checkins: </a>' + bar.checkinsCount + '</p>'
                 );
                 //update contentString
                 bar.contentString( '<div id="info-content">' +
                     '<a href="'+
                     bar.url + 
-                    '"target="_blank"><strong>'+
+                    '" target="_blank"><strong>'+
                     bar.name + '</strong></a><br>'+
                     bar.fourSquareString()+
                     '<p>' + bar.station + '</p>'+
@@ -241,7 +249,7 @@ var MyViewModel = function() {
         
         //set map bounds for BART train network
         defaultBounds: new google.maps.LatLngBounds(
-            new google.maps.LatLng(37.574255, -122.517149),
+            new google.maps.LatLng(37.574255, -122.53),
             new google.maps.LatLng(38.027824, -121.851789)),
         
         //restrict searches to within the USA for more relevant results
@@ -307,9 +315,16 @@ ko.bindingHandlers.clearable = {
 var viewModel = new MyViewModel();
 
 $(document).ready(function() {
+    if (google) {
     ko.applyBindings(viewModel);
-    //start the app
+    //initialize the app
     viewModel.init();
+    } else {
+        var errorMsg = "<h1> Google Maps did not load. Reload this page or check your network's firewall settings</h1>";
+        var errorImg = "<img src='images/sorry.jpg>'";
+        $('#map-canvas').html(errorMsg + errorImg);
+    }
+
 });
 
 /**
@@ -369,8 +384,7 @@ function setCoor() {
             } else if (bar.name === 'Sunol Ridge'){
                 //another workaround to get the right location
                 name = 'Sunol Ridge Restaurant';
-            }
-            else {
+            } else {
                 name = bar.name;
             }
             var request = {
@@ -378,7 +392,6 @@ function setCoor() {
                 bounds: mapObj.defaultBounds,
                 types: ['establishment', 'bar']
             };
-
             service.textSearch(request, callback(station, index));
 
         });
