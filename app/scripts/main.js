@@ -9,14 +9,7 @@ define(['jquery', 'knockout'], function($, ko) {
     ko.applyBindings(viewModel, $('html')[0]);
 });
 */
-/*
-    THe view in KO is just the HTML with declarative bindings to link it to the view model.
-    Or use templates to generate HTML using data from view model
- */
-/*
-    Model: Applicatiohn's stored data. Make AJAX calls to some server side code read and write this stored model data.
- */
-
+//Model for each venue
 var Bar = function(data, station) {
     this.name = data.name;
     this.url = data.url;
@@ -55,11 +48,17 @@ var MyViewModel = function() {
     };
 
     self.getFourSquareInfo = function(bar) {
+        //no search results for The Rare Barrel Sour Beer Co.
+        //this is a work around
+        var name = bar.name;
+        if (name === 'The Rare Barrel Sour Beer Co.') {
+            name = 'The Rare Barrel';
+        }
         //search for the venue
         var search = "https://api.foursquare.com/v2/venues/search?";
         var latLng = "ll=" + bar.latLng.lat + "," + bar.latLng.lng;
         var radius = "&radius=50";
-        var query = "&query=" + bar.name;
+        var query = "&query=" + name;
         var limit = "&limit=1";
         var intent = "&intent=browse";
         var client = "&client_id=DBE2OM01EX5TA1G35UFY54KCTCODNUZK5IYX1YBJN01DPDQJ&client_secret=GXDUOK5LQGMZ41TOBFF1XC4GDULDZIN1CCOC3ZZUJ2JQQ1MW&v=20140806&m=foursquare";
@@ -77,12 +76,12 @@ var MyViewModel = function() {
                                     venue.id + 
                                     "?ref=DBE2OM01EX5TA1G35UFY54KCTCODNUZK5IYX1YBJN01DPDQJ";
                 bar.fourSquareString(
-                    '<p>' + bar.address + '</p>'+
-                    '<p>' + bar.categories + '</p>'+
-                    '<p><a href="' + 
+                    '<span>' + bar.categories + '</span></br>'+
+                    '<span><a href="' + 
                     bar.fourSquareURL + 
                     '" target="_blank">' +
-                    'Checkins: </a>' + bar.checkinsCount + '</p>'
+                    'Checkins: </a>' + bar.checkinsCount + '</span>' +
+                    '<p>' + bar.address + '</p>'
                 );
                 //update contentString
                 bar.contentString( '<div id="info-content">' +
@@ -91,17 +90,27 @@ var MyViewModel = function() {
                     '" target="_blank"><strong>'+
                     bar.name + '</strong></a><br>'+
                     bar.fourSquareString()+
-                    '<p>' + bar.station + '</p>'+
-                    '<p>' + bar.directions + '</p>'+
+                    '<p><em>' + bar.station + '</em><br>'+
+                    '<span>' + bar.directions + '</span></p>'+
                     '</div>'
                 );
                 //console.log(data.response.venues[0].categories);
             }
             
         }).fail(function() {
-            console.log("Could not load data from foursquare");
+            //sometimes requests will time out or fail
+            //then let the user know Fourswaure data couldn't load
+            bar.contentString( '<div id="info-content">' +
+                '<a href="'+
+                bar.url + 
+                '" target="_blank"><strong>'+
+                bar.name + '</strong></a><br>'+
+                '<p><em>' + bar.station + '</em><br>'+
+                '<span>' + bar.directions + '</span></p>'+
+                '<p> Could not load Foursquare data </p>'+
+                '</div>'
+            );
         });
-
     };
 
     /** add InfoWindow clickhandler for each bar */
@@ -110,27 +119,29 @@ var MyViewModel = function() {
             bar.contentString( '<div id="info-content">' +
                 '<a href="'+
                 bar.url + 
-                '"target="_blank"><strong>'+
+                '" target="_blank"><strong>'+
                 bar.name + '</strong></a><br>'+
                 bar.fourSquareString()+
-                '<p>' + bar.station + '</p>'+
-                '<p>' + bar.directions + '</p>'+
+                '<p><em>' + bar.station + '</em><br>'+
+                '<span>' + bar.directions + '</span></p>'+
                 '</div>'
-                );
+            );
             function infoWindowClick(bar) {
                 return function() {
                     //only retrieve Foursquare data if it doesn't exist
                     if(!bar.fourSquareString()) {
                         self.getFourSquareInfo(bar);
-                        //update current infoWindow if Foursquare request successful
+                        //update current infoWindow if and when Foursquare request is successful
+                        //use KO's subscribe since putting this cb function
+                        //inside the getJSON call didn't work
                         bar.contentString.subscribe(function() {
                             self.myMap().infoWindow().setContent(bar.contentString());
                     });
                     }
-                    //display more info in list view?
                     self.myMap().infoWindow().close();
+                    //Load hardcoded data even is getJSON call fails
                     self.myMap().infoWindow().setContent(bar.contentString());
-                    //hide list view
+                    //hide list view so it doesn't block infowindow on mobile
                     self.showList(false);
                     self.myMap().infoWindow().open(self.myMap().googleMap,
                                                  bar.marker);
@@ -277,7 +288,6 @@ ko.bindingHandlers.map = {
         var zoom = ko.unwrap(mapObj.zoom),
             streetViewControl = ko.unwrap(mapObj.streetViewControl),
             mapTypeID = ko.unwrap(mapObj.mapTypeID);
-        //TODO: write a function to automatically created the options object?
         var mapOptions = {
             center: center,
             zoom: zoom,
@@ -293,14 +303,9 @@ ko.bindingHandlers.map = {
     }
 };
 
-ko.bindingHandlers.liveSearchBox = {
-    init: function(element, valueAccessor, allBindings, bindingContext) {
-        var mapObj = ko.unwrap(valueAccessor());
-        //set position for search box 
-        mapObj.googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(element);
-    }
-};
-
+/** @type {binding handler} 
+  * clear search box functionality yet to be implemented 
+*/
 ko.bindingHandlers.clearable = {
     init: function(element, valueAccessor, allBindings, bindingContext) {
         $(element).wrap('<div class="clear-holder" />');
@@ -312,14 +317,17 @@ ko.bindingHandlers.clearable = {
     }
 };
 
+var viewModel;
 $(document).ready(function() {
     if (typeof google === 'object' && typeof google.maps === 'object') {
-    var viewModel = new MyViewModel();
-    ko.applyBindings(viewModel);
-    //initialize the app
-    viewModel.init();
-    } else {
-        var errorMsg = "<h1> Google Maps did not load. Reload this page or check your network's firewall settings</h1>";
+        viewModel = new MyViewModel();
+        ko.applyBindings(viewModel);
+        //initialize the app
+        viewModel.init();
+    } else { /** If google maps API fails to load then show error message */
+        //Since google Maps is a big part of the app if it doesn't load
+        //then there isn't a point in initializing the viewModel
+        var errorMsg = "<h1> There was a problem loading Google Maps. Sooory.</h1>";
         var errorImg = "<img id='sorry' src='images/sorry.png'>";
         $('#map-canvas').html(errorMsg + errorImg);
         $('#filter').hide();
@@ -337,8 +345,6 @@ $(document).ready(function() {
  * Use copy(beer) in console to copy object to clipboard
  * @return {object} Return the number of search requests remaining to run
  */
-//bug: Lucky 13 returns some location in Slovakia as the only result
-//bug: Sunol Ridge Returns some location outside Pleasanton
 
 var numBars = 0;
 var success = 0;
@@ -381,9 +387,13 @@ function setCoor() {
             //Bug in google textSearch, this is a workaround
             if (bar.name === 'Lucky 13') {
                 name = 'Lucky13';
-            } else if (bar.name === 'Sunol Ridge'){
+            } else if (bar.name === 'Sunol Ridge') {
                 //another workaround to get the right location
                 name = 'Sunol Ridge Restaurant';
+            } else if (bar.name === 'Pyramid') {
+                name = 'Pyramid Alehouse';
+            } else if (bar.name === 'Rosamunde Sausage Grill' && station === '12th Street Station, Oakland') {
+                name = 'Rosamunde Sausage Grill Oakland';
             } else {
                 name = bar.name;
             }

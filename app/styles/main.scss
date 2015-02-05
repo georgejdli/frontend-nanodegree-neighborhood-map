@@ -1,9 +1,3 @@
-/* $icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/'; */
-
-// bower:scss
-/* @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss"; */
-// endbower
-
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -11,94 +5,13 @@
   padding: 0.2em 0;
 }
 
-/* Space out content a bit */
-/* body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-} */
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-  }
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-  p + h4 {
-    margin-top: 28px;
-  }
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
-
 html, body, #map-page, #map-canvas { 
-  width: 100%; 
+  height: 100%; 
   margin: 0; 
   padding: 0;
 }
 
-/* Styling for google search box */
+/* Styling for live search/filter */
 .controls {
   margin-top: 16px;
   border: 1px solid transparent;
@@ -110,7 +23,7 @@ html, body, #map-page, #map-canvas {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-#pac-input {
+#filter-box {
   background-color: #fff;
   padding: 0 11px 0 13px;
   width: 100%;
@@ -118,55 +31,44 @@ html, body, #map-page, #map-canvas {
   font-size: 15px;
   font-weight: 300;
   text-overflow: ellipsis;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
-#pac-input:focus {
-  border-color: #4d90fe;
+#filter-box:focus {
+  border-color: #dd9740;
   margin-left: -1px;
-  padding-left: 14px;  
-  //width: 401px;
+  padding-left: 14px;
 }
 
-.pac-container {
-  font-family: Roboto;
+#filter {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 300px;
+  //max-width: 500px;
+  text-align: center;
 }
 
-#type-selector {
-  color: #fff;
-  background-color: #4d90fe;
-  padding: 5px 11px 0px 11px;
-}
-
-#type-selector label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
-.clear-holder{
-    position:relative;
-    float:left;  
-}
-.clear-helper{
-    position:absolute;
-    right:4px;
-    font-size:10pt;
-    cursor: pointer;
-}
-/* END STYLING FOR GOOGLE SEARCH BOX */
-
-/*BEGIN STYLING FOR LIST VIEW */
-#results {
+#list {
   font-family: Arial, Helvetica, sans-serif;
   //position: absolute;
   //right: 5px;
   //top: 50%;
   //margin-top: -195px;
-  height: 16px;
-  width: 200px;
+  height: 32px;
+  width: 100%;
   //padding: 5px;
   //z-index: 5;
   //border: 1px solid #999;
   background-color: #f1f1f1;
+  margin: 0 0 0 0;
+  display: table;
+}
+
+#results {
+  vertical-align: middle;
+  display: table-cell;
 }
 
 ul {
@@ -174,7 +76,7 @@ ul {
   padding: 0;
   margin: 0;
   height: 321px;
-  width: 200px;
+  width: 100%;
   overflow-y: scroll;
 }
 
@@ -191,7 +93,7 @@ li:nth-child(odd) {
   background-color: #fcfcfc;
 }
 
-/*END STYLING FOR LIST VIEW */
+/*END STYLING for live search/filter */
 
 #info-content {
   height: 200px;
@@ -201,4 +103,10 @@ li:nth-child(odd) {
 
 #sorry {
   width: 100%;
+}
+
+@media screen and (min-width: 768px){
+  #filter {
+    width: 400px;
+  }
 }

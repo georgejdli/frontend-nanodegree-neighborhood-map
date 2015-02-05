@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-    <title>frontend-nanodegree-neighborhood-map</title>
+    <title>Beer by BART Map</title>
 
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?libraries=places">
@@ -21,34 +21,22 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <!-- <script src="../bower_components/modernizr/modernizr.js"></script> -->
-    <!-- endbuild -->
   </head>
   <body>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <!-- <div class="header">
-      <ul class="nav nav-pills pull-right">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-      <h3 class="text-muted">frontend-nanodegree-neighborhood-map</h3>
-    </div> -->
-  
+    
   <!-- map binding handler needs to run first since the other custom bindinghandlers are dependent on the google Map object being initialized-->
 
   <div id="map-canvas" data-bind="map: myMap"></div>
   
   <!-- live search/filter with knockout.js -->
-  <!-- TODO add links to each bar item so the right arrow icon shows up-->
-  <div id="filter" "data-bind="liveSearchBox: myMap">
-    <input id="pac-input" class="controls" type="search" name="q" placeholder="name or BART station" data-bind="textInput: query" autocomplete="off">
-    <div data-bind="" id="collapse1">
-      <div id="results" data-bind="click:toggleListVis">
-        <h3>Results</h3>
+  <div id="filter">
+    <input id="filter-box" class="controls" type="search" name="q" placeholder="name or BART station" data-bind="textInput: query" autocomplete="off">
+    <div>
+      <div id="list" class="controls" data-bind="click:toggleListVis">
+        <span id="results">Filtered List</span>
       </div>
       <div>
         <ul data-bind="visible: showList, template: {name:'beer', foreach:barList}">
@@ -57,8 +45,8 @@
     </div>
     <script type="text/html" id="beer">
       <li data-bind="click: $root.listHandler">
-        <strong data-bind="text: name"></strong>
-        <p data-bind="text: station"></p>
+        <strong data-bind="text: name"></strong><br>
+        <span data-bind="text: station"></span>
       </li>
     </script>
   </div>
@@ -70,21 +58,6 @@
     <script src="../bower_components/knockout/dist/knockout.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
-        <!-- build:js scripts/plugins.js -->
-       <!-- <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script> -->
-        <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/beer.js"></script>

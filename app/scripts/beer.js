@@ -245,10 +245,10 @@ var beer = {
       "url": "http://beerbybart.com/why/pyramid-walnut-creek-station/",
       "directions": "From BART, turn right onto Ygnacio Valley road. Then turn Left onto California Blvd for a block.  Take a right on Lacassie for a block, and a right onto Locust. Continue until you see the brewpub on your left, at the corner of Cypress.",
       "latLng": {
-        "lat": 37.880394,
-        "lng": -122.30023399999999
+        "lat": 37.899316,
+        "lng": -122.06198699999999
       },
-      "placeID": "ChIJlbHuBNJ-hYARfSgwRYpJlY4"
+      "placeID": "ChIJN1dYvephhYARp5eC_GIA16Y"
     }
   ],
   "MacArthur Station, Oakland": [
@@ -351,10 +351,10 @@ var beer = {
       "url": "http://beerbybart.com/why/rosamunde-sausage-grill-12th-st-oakland/",
       "directions": "Exit BART thru Exit A1. Walk down Broadway past the Marriott Hotel/Convention Center, turn right on 10th Street. (Take a diagonal shortcut through the parking lot towards the Free WiFi sign if you prefer.)  From 10th, turn left onto Washington and you’ll see Rosamunde Sausage Grill ahead on the right in Swan Market.",
       "latLng": {
-        "lat": 37.751621,
-        "lng": -122.41866199999998
+        "lat": 37.801769,
+        "lng": -122.27468099999999
       },
-      "placeID": "ChIJTdUqwKaAhYARyGg63wTM2qg"
+      "placeID": "ChIJcSHoJLeAj4ARAxiBhk4q9ZU"
     },
     {
       "name": "Pacific Coast Brewing Co.",

@@ -1,5 +1,21 @@
+Custom binding handler for google Maps
+http://stackoverflow.com/questions/12722925/google-maps-and-knockoutjshtml
+http://jsfiddle.net/schmidlop/5eTRV/10/
+
 Creating live search functionality with knockout.js
 http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
 
 Improving search performance algorithm
 http://stackoverflow.com/a/13565974
+
+List view exmaple, used it for styling
+https://developers.google.com/maps/documentation/javascript/examples/place-search-pagination
+
+Search box styling
+https://developers.google.com/maps/documentation/javascript/examples/places-searchbox
+
+Writing a scraper in Node.js
+https://scotch.io/tutorials/scraping-the-web-with-node-js
+
+Yeoman generator to scaffold project
+https://github.com/jtemplet/generator-knockout-gulp-bootstrap
