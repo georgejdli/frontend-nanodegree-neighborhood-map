@@ -312,17 +312,17 @@ ko.bindingHandlers.clearable = {
     }
 };
 
-var viewModel = new MyViewModel();
-
 $(document).ready(function() {
-    if (google) {
+    if (typeof google === 'object' && typeof google.maps === 'object') {
+    var viewModel = new MyViewModel();
     ko.applyBindings(viewModel);
     //initialize the app
     viewModel.init();
     } else {
         var errorMsg = "<h1> Google Maps did not load. Reload this page or check your network's firewall settings</h1>";
-        var errorImg = "<img src='images/sorry.jpg>'";
+        var errorImg = "<img id='sorry' src='images/sorry.png'>";
         $('#map-canvas').html(errorMsg + errorImg);
+        $('#filter').hide();
     }
 
 });
