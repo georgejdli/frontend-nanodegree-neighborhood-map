@@ -7,6 +7,8 @@ This project is built using Knockout.js
 Here is a live version of the project: 
 http://georgejdli.github.io/frontend-nanodegree-neighborhood-map/dist/
 
+Check the resource.txt file for a list of references used.
+
 ##How to use the app
 Scroll through the list of establishments and click on any entry to show the location on the map. Use the search bar to filter locations on the list and map views by name or BART station. Click on the "results" box to show/hide the list view.
 
