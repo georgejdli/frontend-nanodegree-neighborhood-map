@@ -64,6 +64,7 @@ html, body, #map-page, #map-canvas {
   background-color: #f1f1f1;
   margin: 0 0 0 0;
   display: table;
+  cursor: pointer;
 }
 
 #results {
@@ -78,6 +79,7 @@ ul {
   height: 321px;
   width: 100%;
   overflow-y: scroll;
+  cursor: pointer;
 }
 
 li {
