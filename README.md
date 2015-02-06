@@ -38,11 +38,15 @@ Scroll through the list of establishments and click on any entry to show the loc
 
 ###Updating the venue list - Running the scraper
 - This is not an ideal solution but it works (unless the page structure changes...)
+- I thought it would be best to hard code the coordinate data since the list of map locations is static
 - Requires Node.js and npm
 - [cd scraper] via command line
 - run [npm install] to grab dependencies
 - run [node server.js]
 - if successful open output.json
-- glace over the data to make sure everything loaded correctly
+- glance over the data to make sure everything loaded correctly
 - copy the contents and paste it into the [var beer =] declaration in app/scripts/beer.js
-- [cd] into the root directory
+- [cd] into the root directory and run [gulp watch]
+- In the browser console run [setCoor] to grab lat and lng data from google text search
+	- since there is a limit on the number of searches per second this function will have to be run multiple times until it returns <= 0
+	- use [copy(beer)] in the console to copy the newly updated object and paste it back into the [var beer =] declaration in app/scripts/beer.js
