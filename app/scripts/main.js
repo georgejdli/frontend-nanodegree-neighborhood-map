@@ -63,7 +63,6 @@ var MyViewModel = function() {
         var intent = "&intent=browse";
         var client = "&client_id=DBE2OM01EX5TA1G35UFY54KCTCODNUZK5IYX1YBJN01DPDQJ&client_secret=GXDUOK5LQGMZ41TOBFF1XC4GDULDZIN1CCOC3ZZUJ2JQQ1MW&v=20140806&m=foursquare";
         var url = search + latLng + radius + query + limit + intent + client;
-        console.log(url);
         $.getJSON(url, function(data) {
             //if there is a search result extract the data
             //otherwise do nothing so the UI isn't affected
@@ -94,7 +93,6 @@ var MyViewModel = function() {
                     '<span>' + bar.directions + '</span></p>'+
                     '</div>'
                 );
-                //console.log(data.response.venues[0].categories);
             }
             
         }).fail(function() {
@@ -143,6 +141,7 @@ var MyViewModel = function() {
                     self.myMap().infoWindow().setContent(bar.contentString());
                     //hide list view so it doesn't block infowindow on mobile
                     self.showList(false);
+                    self.myMap().googleMap.setCenter(bar.latLng);
                     self.myMap().infoWindow().open(self.myMap().googleMap,
                                                  bar.marker);
                 };
@@ -236,6 +235,7 @@ var MyViewModel = function() {
         self.myMap().infoWindow().setContent(this.contentString());
         //hide list view so infoWindow isn't blocked
         self.showList(false);
+        self.myMap().googleMap.setCenter(this.latLng);
         self.myMap().infoWindow().open(self.myMap().googleMap,
                                      this.marker);
     };
