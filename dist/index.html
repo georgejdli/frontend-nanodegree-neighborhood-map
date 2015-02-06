@@ -1,0 +1,54 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>Beer by BART Map</title>
+
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=places">
+    </script>
+    
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    
+
+    <link rel="stylesheet" href="styles/main.css">
+
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+  <!-- map binding handler needs to run first since the other custom bindinghandlers are dependent on the google Map object being initialized-->
+
+  <div id="map-canvas" data-bind="map: myMap"></div>
+  
+  <!-- live search/filter with knockout.js -->
+  <div id="filter">
+    <input id="filter-box" class="controls" type="search" name="q" placeholder="name or BART station" data-bind="textInput: query" autocomplete="off">
+    <div>
+      <div id="list" class="controls" data-bind="click:toggleListVis">
+        <span id="results">Filtered List</span>
+      </div>
+      <div>
+        <ul data-bind="visible: showList, template: {name:'beer', foreach:barList}">
+        </ul>
+      </div>
+    </div>
+    <script type="text/html" id="beer">
+      <li data-bind="click: $root.listHandler">
+        <strong data-bind="text: name"></strong><br>
+        <span data-bind="text: station"></span>
+      </li>
+    </script>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="scripts/vendor.js"></script>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
