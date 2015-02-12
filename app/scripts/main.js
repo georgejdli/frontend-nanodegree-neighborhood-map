@@ -152,7 +152,7 @@ var MyViewModel = function() {
                     self.myMap().infoWindow().open(self.myMap().googleMap,
                                                  bar.marker);
                     //pan the map down so infowindow isnt blocked by search bar
-                    self.myMap().googleMap.panBy(0,-80);
+                    self.myMap().googleMap.panBy(0,-100);
                 };
             }
             google.maps.event.addListener(bar.marker,
@@ -257,7 +257,7 @@ var MyViewModel = function() {
         self.myMap().infoWindow().open(self.myMap().googleMap,
                                      this.marker);
         //pan the map down so infowindow isnt blocked by search bar
-        self.myMap().googleMap.panBy(0,-80);
+        self.myMap().googleMap.panBy(0,-100);
     };
 
     /* myMap holds the googleMap object and the map options */
