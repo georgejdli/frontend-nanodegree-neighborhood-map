@@ -28,7 +28,7 @@ var MyViewModel = function() {
     self.bars = ko.observableArray([]);
     //this observable will hold the filtered list of bars to display
     self.barList = ko.observableArray();
-
+    var clickedMarker;
     /** create new Bar instance and push into regular array self.bars */
     self.createBar = function(station) {
             return function (bar) {
@@ -137,13 +137,22 @@ var MyViewModel = function() {
                     });
                     }
                     self.myMap().infoWindow().close();
-                    //Load hardcoded data even is getJSON call fails
+                    //reset the color of the previously open marker
+                    if (clickedMarker) {
+                        clickedMarker.setIcon();
+                    }
+                    //Load hardcoded data even if getJSON call fails
                     self.myMap().infoWindow().setContent(bar.contentString());
                     //hide list view so it doesn't block infowindow on mobile
                     self.showList(false);
                     self.myMap().googleMap.setCenter(bar.latLng);
+                    //set marker color to a different color to indicate that it isselected
+                    bar.marker.setIcon('https://www.google.com/mapfiles/marker_yellow.png');
+                    clickedMarker = bar.marker;
                     self.myMap().infoWindow().open(self.myMap().googleMap,
                                                  bar.marker);
+                    //pan the map down so infowindow isnt blocked by search bar
+                    self.myMap().googleMap.panBy(0,-80);
                 };
             }
             google.maps.event.addListener(bar.marker,
@@ -232,12 +241,23 @@ var MyViewModel = function() {
             }(this)) );
         }
         self.myMap().infoWindow().close();
+        //reset the color of the previously open marker
+        if (clickedMarker) {
+            clickedMarker.setIcon();
+        }
         self.myMap().infoWindow().setContent(this.contentString());
         //hide list view so infoWindow isn't blocked
         self.showList(false);
+        
         self.myMap().googleMap.setCenter(this.latLng);
+
+        //set marker color to a different color to indicate that it is selected
+        this.marker.setIcon('https://www.google.com/mapfiles/marker_yellow.png');
+        clickedMarker = this.marker;
         self.myMap().infoWindow().open(self.myMap().googleMap,
                                      this.marker);
+        //pan the map down so infowindow isnt blocked by search bar
+        self.myMap().googleMap.panBy(0,-80);
     };
 
     /* myMap holds the googleMap object and the map options */
@@ -394,7 +414,10 @@ function setCoor() {
                 name = 'Pyramid Alehouse';
             } else if (bar.name === 'Rosamunde Sausage Grill' && station === '12th Street Station, Oakland') {
                 name = 'Rosamunde Sausage Grill Oakland';
-            } else {
+            } else if (bar.name === 'Lanesplitter' && station === 'MacArthur Station, Oakland') {
+                name = 'Lanesplitter Telegraph';
+            }
+            else {
                 name = bar.name;
             }
             var request = {

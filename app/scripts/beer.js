@@ -277,10 +277,10 @@ var beer = {
       "url": "http://beerbybart.com/why/lanesplitter-macarthur/",
       "directions": "Walk out of the BART on 40th st. to Telegraph, left on Telegraph for about half a mile to the corner of 48th. You could also take any bus headed up Telegraph, however you are likely to see cabs before you see a bus.  Note that MacArthur BART – a BART station which has seen late night crime – can be intimidating after dark. This route is clearly not the most scenic walk in Oakland, and it can be rather desolate. You might choose to walk it by daylight, and then take a cab or a bus back to BART later.",
       "latLng": {
-        "lat": 37.868597,
-        "lng": -122.29171300000002
+        "lat": 37.834926,
+        "lng": -122.26320199999998
       },
-      "placeID": "ChIJpz0G2cF-hYAR9J9vRSlUrnk"
+      "placeID": "ChIJzcummuF9hYARpFIaymYWFbs"
     }
   ],
   "19th Street Station, Oakland": [
